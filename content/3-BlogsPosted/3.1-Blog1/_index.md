@@ -1,74 +1,54 @@
 ---
-title: "Blog 1"
+title: "Create your first search application with Amazon OpenSearch Service"
 date: 2026-07-05
 weight: 1
 chapter: false
-pre: " <b> 3.1. </b> "
 ---
 
-# VPC Endpoints: Secure Private Access to Amazon S3
+In the era of data explosion, the ability to search and analyze information in real-time is no longer a luxury but a vital requirement for businesses. From industrial IoT sensors transmitting millions of metrics per second, to e-commerce platforms needing instant product display, or security teams detecting real-time threats—all require a powerful search platform.
 
-### 1. Introduction
+**Amazon OpenSearch Service** was born to solve exactly that problem.
 
-In modern cloud architectures, security and cost optimization are paramount. When compute resources inside a virtual private cloud (VPC) need to communicate with storage services like Amazon S3, routing traffic through the public internet is a bad practice. It introduces security vulnerabilities and incurs unnecessary NAT Gateway data transfer charges. 
+### What is OpenSearch Service?
 
-AWS PrivateLink solves this by providing private connectivity using VPC endpoints. This blog post explores how to configure and verify Gateway and Interface VPC Endpoints for secure, private S3 access.
+It is a fully managed search and analysis service by AWS. Instead of worrying about infrastructure, you only need to focus on building your application. The **Amazon OpenSearch Serverless** version goes even further by automatically scaling resources according to demand without managing servers.
 
----
+### Core Architecture to Know
 
-### 2. Gateway Endpoints vs. Interface Endpoints
+Before diving into code, you need to understand a few foundational concepts:
 
-| Feature | Gateway Endpoint | Interface Endpoint |
-|---|---|---|
-| **Underlying Tech** | Routing table prefix list | Elastic Network Interface (ENI) with Private IP |
-| **Access Method** | Direct route table entry | DNS resolution |
-| **Scope** | VPC internal only | VPC & On-premises (via VPN/Direct Connect) |
-| **Cost** | Free | Pay-per-hour + Data processing |
+*   **Document & Index:** The basic data unit is a document (JSON format), organized into indexes, which are similar to tables in a database.
+*   **Cluster & Node:** OpenSearch operates on a distributed model. Master nodes manage the cluster, data nodes handle storage and queries, and coordinator nodes route requests to offload data nodes.
+*   **Shard & Replica:** Indexes are split into shards (recommended 10–50 GB per shard) and replicated to ensure high availability.
+*   **Inverted Index & BM25:** Full-text search technology is powered by the inverted index structure and the BM25 ranking algorithm.
 
----
+### Sample Application Architecture
 
-### 3. Setting Up a Gateway VPC Endpoint for S3
+A complete search application on AWS is built with a multi-layered security model, where components coordinate tightly from the frontend to the data cluster.
 
-For EC2 instances running inside a private subnet within the cloud VPC, a **Gateway Endpoint** is the most cost-effective and performant choice.
+![Sample Application Architecture](/images/opensearch_architecture.png)
 
-#### Step 1: Create the Endpoint
-1. Open the **Amazon VPC console**.
-2. In the navigation pane, choose **Endpoints** -> **Create endpoint**.
-3. Service category: Choose **AWS services**.
-4. Service name: Search `s3` and select the **Gateway** type (e.g., `com.amazonaws.us-east-1.s3`).
-5. VPC: Select your Cloud VPC.
+#### Detailed Workflow
 
-#### Step 2: Configure Route Tables
-1. Under **Route tables**, select the route tables associated with your private subnets.
-2. The wizard automatically adds a route pointing to the S3 prefix list (e.g., `pl-63a5400a`) with the target set to the endpoint ID (`vpce-xxxxxx`).
+When a user interacts with the application, every request is processed in a clear sequence of steps:
 
-#### Step 3: Verify the Connection
-SSH into your private EC2 instance and run:
-```bash
-aws s3 ls --region us-east-1
-```
-If configured correctly, the command returns the bucket list immediately without internet gateway access.
+1.  **Step 1 - Access UI:** Users open the application via AWS App Runner, where the frontend is hosted and served automatically.
+2.  **Step 2 - Authentication:** Amazon Cognito handles identity verification and authorization, ensuring only valid users can proceed.
+3.  **Step 3 - Routing via API Gateway:** All requests from the frontend pass through API Gateway—the single entry point for the entire system. API Gateway checks the token from Cognito and forwards the request to Lambda functions inside the VPC.
+4.  **Step 4 - Logic Processing in Lambda:** Depending on the request type, AWS Lambda performs one of two tasks: indexing new data into OpenSearch, or executing search queries on the existing cluster.
+5.  **Step 5 - OpenSearch in Secure Zone:** The entire OpenSearch cluster resides in the private subnet of the VPC, completely isolated from the internet—a critical security layer for sensitive data.
 
----
+### Conclusion
 
-### 4. Setting Up an Interface VPC Endpoint for Hybrid/On-Premises Access
+With this architecture, you can build a production-ready search application on AWS without managing complex infrastructure. Amazon OpenSearch Service delivers:
 
-If you need to access Amazon S3 from an on-premises network via a VPN tunnel or AWS Direct Connect, Gateway Endpoints cannot be targeted. Instead, you must use an **Interface Endpoint**.
+*   Fast and scalable search based on actual business needs.
+*   Built-in security and compliance without manual configuration.
+*   Automated cluster management—AWS handles the heavy lifting, you focus on the product.
+*   Flexible pricing model—only pay for what you actually use.
 
-#### Step 1: Create the Endpoint
-1. In the VPC Console, click **Create endpoint**.
-2. Select **AWS services** -> Search `s3` -> Select the **Interface** type.
-3. Select your VPC and the specific subnets where the ENIs should be provisioned.
-4. Enable **Private DNS** to let application queries automatically resolve to the private endpoint IPs.
+The complete source code and detailed deployment instructions are available at [sample-for-amazon-opensearch-service-tutorials-101](https://github.com/aws-samples/sample-for-amazon-opensearch-service-tutorials-101) on GitHub - you can clone it and try it today.
 
-#### Step 2: Test from On-Premises
-Using the Interface Endpoint's DNS name, query S3 from your on-premises simulator:
-```bash
-aws s3 ls --endpoint-url https://bucket.vpce-xxxxxx.s3.us-east-1.vpce.amazonaws.com
-```
+***
 
----
-
-### 5. Conclusion
-
-Implementing VPC Endpoints is a fundamental security practice on AWS. By routing S3 traffic internally, you protect your data from public internet exposure and significantly reduce NAT Gateway egress costs.
+*   **Original Blog Link:** [Amazon OpenSearch Service 101: Create your first search application with OpenSearch](https://aws.amazon.com/blogs/big-data/amazon-opensearch-service-101-create-your-first-search-application-with-opensearch/)

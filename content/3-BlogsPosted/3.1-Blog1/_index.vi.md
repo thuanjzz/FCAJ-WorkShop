@@ -1,74 +1,54 @@
 ---
-title: "Blog 1"
+title: "Xây dựng ứng dụng tìm kiếm đầu tiên với Amazon OpenSearch Service"
 date: 2026-07-05
 weight: 1
 chapter: false
-pre: " <b> 3.1. </b> "
 ---
 
-# VPC Endpoints: Truy cập Amazon S3 Riêng tư và Bảo mật
+Trong thời đại dữ liệu bùng nổ, khả năng tìm kiếm và phân tích thông tin theo thời gian thực không còn là lợi thế mà là điều kiện sống còn của doanh nghiệp. Từ các cảm biến IoT công nghiệp truyền hàng triệu chỉ số mỗi giây, đến nền tảng thương mại điện tử cần hiển thị sản phẩm tức thì, hay các đội bảo mật cần phát hiện mối đe dọa trong thời gian thực, tất cả đều đòi hỏi một nền tảng tìm kiếm mạnh mẽ.
 
-### 1. Giới thiệu
+**Amazon OpenSearch Service** ra đời để giải quyết đúng bài toán đó.
 
-Trong kiến trúc đám mây hiện đại, bảo mật và tối ưu chi phí là hai yếu tố hàng đầu. Khi các tài nguyên tính toán bên trong mạng riêng (VPC) cần giao tiếp với các dịch vụ lưu trữ như Amazon S3, việc định tuyến lưu lượng qua internet công cộng là một điểm yếu bảo mật và làm phát sinh chi phí truyền tải dữ liệu NAT Gateway không đáng có.
+### OpenSearch Service là gì?
 
-AWS PrivateLink giải quyết vấn đề này bằng cách cung cấp kết nối riêng tư thông qua VPC Endpoints. Bài viết này sẽ hướng dẫn cách cấu hình và kiểm tra Gateway và Interface VPC Endpoints để truy cập S3 bảo mật.
+Đây là dịch vụ tìm kiếm và phân tích được quản lý hoàn toàn bởi AWS. Thay vì lo lắng về hạ tầng, bạn chỉ cần tập trung vào việc xây dựng ứng dụng. Phiên bản **Amazon OpenSearch Serverless** còn đi xa hơn khi tự động co giãn tài nguyên theo nhu cầu mà không cần quản lý server.
 
----
+### Kiến trúc cốt lõi cần biết
 
-### 2. So sánh Gateway Endpoints vs. Interface Endpoints
+Trước khi bắt tay vào viết code, bạn cần nắm vài khái niệm nền tảng:
 
-| Đặc điểm | Gateway Endpoint | Interface Endpoint |
-|---|---|---|
-| **Công nghệ** | Định tuyến qua Prefix List trong Route Table | Cấp phát Elastic Network Interface (ENI) với IP riêng |
-| **Cách truy cập** | Cập nhật bảng định tuyến | Phân giải qua DNS |
-| **Phạm vi** | Chỉ trong VPC | Trong VPC & On-premises (qua VPN/Direct Connect) |
-| **Chi phí** | Miễn phí | Tính phí theo giờ + Phí xử lý dữ liệu |
+*   **Document & Index:** Đơn vị dữ liệu cơ bản là document (định dạng JSON), được tổ chức trong các index tương tự như bảng trong cơ sở dữ liệu.
+*   **Cluster & Node:** OpenSearch hoạt động theo mô hình phân tán. Các master node quản lý cluster, data node xử lý lưu trữ và truy vấn, còn coordinator node định tuyến yêu cầu để giảm tải cho data node.
+*   **Shard & Replica:** Index được chia thành các shard (khuyến nghị từ 10–50 GB mỗi shard) và nhân bản (replica) để đảm bảo tính sẵn sàng cao.
+*   **Inverted Index & BM25:** Công nghệ tìm kiếm full-text được hỗ trợ bởi cấu trúc inverted index và thuật toán xếp hạng BM25.
 
----
+### Kiến trúc ứng dụng mẫu
 
-### 3. Cấu hình Gateway VPC Endpoint cho S3
+Một ứng dụng tìm kiếm hoàn chỉnh trên AWS được xây dựng theo mô hình bảo mật nhiều lớp, với các thành phần phối hợp chặt chẽ từ frontend đến cluster dữ liệu.
 
-Đối với các EC2 instance chạy trong subnet riêng tư (private subnet) trong VPC Cloud, **Gateway Endpoint** là lựa chọn tối ưu nhất về hiệu năng và chi phí.
+![Kiến trúc ứng dụng mẫu](/images/opensearch_architecture.png)
 
-#### Bước 1: Tạo Endpoint
-1. Mở **Amazon VPC console**.
-2. Chọn **Endpoints** -> **Create endpoint**.
-3. Service category: Chọn **AWS services**.
-4. Service name: Tìm kiếm từ khóa `s3` và chọn dịch vụ có type là **Gateway** (ví dụ: `com.amazonaws.us-east-1.s3`).
-5. VPC: Chọn VPC Cloud của bạn.
+#### Luồng hoạt động chi tiết
 
-#### Bước 2: Cấu hình bảng định tuyến (Route Table)
-1. Ở phần **Route tables**, chọn bảng định tuyến liên kết với các private subnet của bạn.
-2. Hệ thống sẽ tự động thêm một dòng định tuyến trỏ đến S3 prefix list (ví dụ: `pl-63a5400a`) với target là Endpoint ID (`vpce-xxxxxx`).
+Khi người dùng tương tác với ứng dụng, mọi yêu cầu được xử lý theo một chuỗi bước rõ ràng:
 
-#### Bước 3: Xác minh kết nối
-SSH vào EC2 instance trong private subnet và chạy lệnh:
-```bash
-aws s3 ls --region us-east-1
-```
-Nếu cấu hình đúng, danh sách S3 buckets sẽ hiển thị ngay lập tức mà không cần đi qua Internet Gateway.
+1.  **Bước 1 - Truy cập giao diện:** Người dùng mở ứng dụng qua AWS App Runner, nơi frontend được host và phục vụ tự động.
+2.  **Bước 2 - Xác thực:** Amazon Cognito đảm nhận việc xác minh danh tính và phân quyền, đảm bảo chỉ người dùng hợp lệ mới có thể tiếp tục.
+3.  **Bước 3 - Định tuyến qua API Gateway:** Mọi yêu cầu từ frontend đều đi qua API Gateway - đây là cổng vào duy nhất cho toàn bộ hệ thống. API Gateway kiểm tra token từ Cognito rồi chuyển tiếp yêu cầu vào các Lambda function bên trong VPC.
+4.  **Bước 4 - Xử lý logic tại Lambda:** Tùy theo loại yêu cầu, AWS Lambda thực hiện một trong hai nhiệm vụ: đánh index dữ liệu mới vào OpenSearch, hoặc thực thi truy vấn tìm kiếm trên cluster hiện có.
+5.  **Bước 5 - OpenSearch trong vùng bảo mật:** Toàn bộ OpenSearch cluster nằm trong private subnet của VPC, hoàn toàn không tiếp xúc trực tiếp với internet - đây là lớp bảo mật quan trọng cho dữ liệu nhạy cảm.
 
----
+### Kết luận
 
-### 4. Cấu hình Interface VPC Endpoint cho kết nối On-Premises (Hybrid)
+Với kiến trúc trên, bạn có thể xây dựng một ứng dụng tìm kiếm production-ready trên AWS mà không cần quản lý hạ tầng phức tạp. Amazon OpenSearch Service mang lại:
 
-Nếu bạn cần truy cập Amazon S3 từ mạng on-premises (nội bộ doanh nghiệp) thông qua VPN hoặc AWS Direct Connect, bạn không thể sử dụng Gateway Endpoint. Thay vào đó, bạn phải tạo một **Interface Endpoint**.
+*   Tìm kiếm nhanh và có thể mở rộng theo nhu cầu thực tế của doanh nghiệp.
+*   Bảo mật và tuân thủ tích hợp sẵn, không cần cấu hình thủ công.
+*   Quản lý cluster tự động — AWS lo phần nặng, bạn tập trung vào sản phẩm.
+*   Mô hình chi phí linh hoạt, chỉ trả tiền cho những gì thực sự dùng.
 
-#### Bước 1: Tạo Endpoint
-1. Tại VPC Console, chọn **Create endpoint**.
-2. Chọn **AWS services** -> Tìm `s3` -> Chọn loại **Interface**.
-3. Chọn VPC và chọn các subnet cụ thể để cấp phát card mạng ảo ENI.
-4. Bật tính năng **Private DNS** để các truy vấn tự động phân giải về IP riêng tư của Endpoint.
+Toàn bộ source code và hướng dẫn triển khai chi tiết có sẵn tại [sample-for-amazon-opensearch-service-tutorials-101](https://github.com/aws-samples/sample-for-amazon-opensearch-service-tutorials-101) trên GitHub - bạn có thể clone về và chạy thử ngay hôm nay.
 
-#### Bước 2: Kiểm thử kết nối từ On-Premises
-Sử dụng DNS của Interface Endpoint để truy vấn S3 từ máy trạm on-premises:
-```bash
-aws s3 ls --endpoint-url https://bucket.vpce-xxxxxx.s3.us-east-1.vpce.amazonaws.com
-```
+***
 
----
-
-### 5. Kết luận
-
-Triển khai VPC Endpoints là một thực hành bảo mật cốt lõi trên AWS. Định tuyến lưu lượng S3 nội bộ giúp bảo vệ dữ liệu khỏi internet công cộng và giảm thiểu đáng kể chi phí băng thông NAT Gateway.
+*   **Link bài viết gốc:** [Amazon OpenSearch Service 101: Create your first search application with OpenSearch](https://aws.amazon.com/blogs/big-data/amazon-opensearch-service-101-create-your-first-search-application-with-opensearch/)

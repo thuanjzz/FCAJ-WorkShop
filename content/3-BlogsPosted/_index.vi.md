@@ -8,14 +8,10 @@ pre: " <b> 3. </b> "
 
 Trong thời gian thực tập tại FCAJ, tôi viết và đăng các bài blog kỹ thuật lên cộng đồng [AWS Study Group](https://www.facebook.com/groups/awsstudygroupfcj) để chia sẻ kiến thức và ghi lại bài học.
 
-### [Blog 1 — VPC Endpoints: Truy cập Amazon S3 Riêng tư và Bảo mật](3.1-Blog1/)
+### [Blog 1 — Xây dựng ứng dụng tìm kiếm đầu tiên với Amazon OpenSearch Service](3.1-Blog1/)
 
-Bài blog giải thích hai loại VPC endpoints cho S3 — **Gateway Endpoint** (cho EC2 trong VPC) và **Interface Endpoint** (cho on-premises qua VPN/Direct Connect). Bao gồm use cases, các bước cấu hình và cách xác minh traffic đi trong mạng riêng AWS mà không qua internet công cộng. Chủ đề này được ứng dụng trực tiếp trong workshop FCAJ về **Secure Hybrid Access to S3**.
+Bài viết giới thiệu về Amazon OpenSearch Service - dịch vụ tìm kiếm và phân tích được quản lý hoàn toàn bởi AWS. Bài viết giải thích các khái niệm cốt lõi (Document, Index, Cluster, Node, Shard, Replica, Inverted Index) và cung cấp kiến trúc ứng dụng mẫu bảo mật nhiều lớp kết hợp AWS App Runner, Cognito, API Gateway, Lambda bên trong VPC riêng tư.
 
-### [Blog 2 — AWS Bedrock Throttling: Chiến lược Exponential Backoff cho Hệ thống AI Production](3.2-Blog2/)
+### [Blog 2 — Tự động số hóa hồ sơ bệnh án với Amazon Bedrock Data Automation và AWS HealthLake](3.2-Blog2/)
 
-Bài blog ghi lại vấn đề **ThrottlingException** gặp phải khi tích hợp AWS Bedrock (Amazon Nova Lite) vào AI pipeline trong kỳ thực tập. Giải thích nguyên nhân (giới hạn mặc định 100 requests/phút), giải pháp adaptive retry dùng `botocore.config`, và cách kiểm thử với `botocore.stub.Stubber`. Bài viết tham chiếu GitHub Issue #72 từ dự án `smart_media_analytics_cloudforge`. Hữu ích cho các nhóm xây dựng hệ thống xử lý AI theo batch trên Bedrock.
-
-### [Blog 3 — Từ ChromaDB sang pgvector: Đơn giản hóa Stack AI](3.3-Blog3/)
-
-Bài blog chia sẻ quyết định kiến trúc chuyển từ **ChromaDB** (vector database riêng biệt) sang **pgvector** (extension PostgreSQL). Bao gồm lý do (loại bỏ service riêng, cho phép JOIN giữa metadata và vectors), các bước migration, so sánh hiệu năng truy vấn và cấu hình HNSW index cho cosine similarity search ở quy mô production. Hướng dẫn thực tế cho các nhóm xây dựng hệ thống semantic search trên AWS RDS.
+Bài viết chia sẻ một kiến trúc serverless kết hợp AI giúp tự động số hóa hồ sơ bệnh án không cấu trúc (file PDF hoặc hình ảnh scan) sử dụng Amazon Bedrock Data Automation và AWS HealthLake. Bài viết trình bày chi tiết luồng xử lý dạng event-driven, lợi ích của việc chuẩn hóa dữ liệu theo chuẩn y tế toàn cầu FHIR R4, các trường hợp sử dụng lâm sàng thực tế và các lưu ý bảo mật cần thiết khi triển khai.

@@ -1,96 +1,89 @@
 ---
-title: "Blog 2"
+title: "Automate medical record digitization with Amazon Bedrock Data Automation and AWS HealthLake"
 date: 2026-07-05
 weight: 2
 chapter: false
-pre: " <b> 3.2. </b> "
 ---
 
-# AWS Bedrock Throttling: Exponential Backoff Strategy for Production AI Systems
+Today, I want to share an exciting architecture from AWS designed for the healthcare industry: **automating medical record digitization using AI with Amazon Bedrock Data Automation combined with AWS HealthLake**.
 
-### 1. The Throttling Challenge in Serverless AI
+During digital transformation, many hospitals still store medical records in paper or scanned PDF formats. This makes searching for information, summarizing treatment histories, or sharing data between systems time-consuming. Manual entry is both labor-intensive and prone to errors.
 
-When scaling AI pipelines that invoke Foundation Models (FMs), API rate limits are a common bottleneck. In our Video Semantic Search project (`smart_media_analytics_cloudforge`), the pipeline extracts keyframes from a video and sends them to **AWS Bedrock (Amazon Nova Lite)** to generate descriptive captions. 
+The problem is: how do we automatically transform unstructured medical documents into searchable, analyzable digital data that can integrate with hospital management systems?
 
-With large batches of keyframes processed concurrently, we immediately encountered a `ThrottlingException` (HTTP 429). By default, AWS Bedrock imposes a limit of 100 requests per minute. Without proper handling, these transient errors crash the pipeline containers, resulting in failed jobs.
+AWS proposes a serverless, AI-powered architecture to solve this.
 
----
+### How the Architecture Works
 
-### 2. Understanding Exponential Backoff and Jitter
+The entire workflow is triggered automatically as soon as a document is uploaded to Amazon S3.
 
-To build a resilient system, we must handle API rate limits gracefully. Instead of failing immediately or retrying continuously (which worsens the load on the API), we implement **Exponential Backoff with Jitter**.
+![Architecture Diagram](/images/healthlake_architecture.png)
 
-- **Exponential Backoff:** The wait time between retries increases exponentially (e.g., 1s, 2s, 4s, 8s).
-- **Jitter (Random Noise):** Adds a random delay to prevent "thundering herd" problems where all failed instances retry at the exact same millisecond.
+The processing flow consists of the following steps:
 
-\[T_{\text{wait}} = 2^{\text{attempt}} \times \text{base\_delay} + \text{random\_jitter}\]
+1.  **Step 1 - PDF Upload:** Users (medical staff) upload medical records (PDF or image format) to Amazon S3.
+2.  **Step 2 - S3 Event Notification:** S3 sends a `PutObject` notification to trigger a Lambda function (BDA Job Trigger).
+3.  **Step 3 - BDA Job Trigger:** The Lambda function initiates a processing job in Amazon Bedrock Data Automation.
+4.  **Step 4 - Extracting Data:** Amazon Bedrock Data Automation analyzes the document using BDA Blueprints (JSON templates) and automatically extracts key information such as patient details, diagnoses, lab results, prescriptions, and vital signs.
+5.  **Step 5 - Store BDA Results:** Extracted medical data is stored in another Amazon S3 bucket.
+6.  **Step 6 - FHIR Conversion:** A second Lambda function is triggered by the new object, converts the extracted medical data to the FHIR R4 standard, and creates a FHIR API import job.
+7.  **Step 7 - Importing to HealthLake:** AWS HealthLake stores and indexes the FHIR data.
+8.  **Step 8 - Client Application Access:** Healthcare systems or client applications query the clinical data securely via standard FHIR APIs.
 
----
+All logs are sent to Amazon CloudWatch for centralized logging and monitoring. The entire workflow operates on an event-driven model, meaning resources are only consumed when a new document is uploaded, eliminating the need to maintain running servers.
 
-### 3. Implementing the Solution in Python
+### What is Special About Amazon Bedrock Data Automation?
 
-We solved this issue using two layers of defense: `botocore`'s built-in adaptive config and the python `tenacity` library for custom control.
+The highlight is that you don't need to build your own OCR and NLP pipelines.
 
-#### Layer 1: Botocore Adaptive Retry Config
-We configured the `boto3` client to use the `adaptive` retry mode, which automatically throttles local requests based on feedback from Bedrock.
+Typically, to process medical records, a company would have to combine several steps:
+*   OCR (Optical Character Recognition)
+*   Layout Analysis
+*   Entity Extraction
+*   Data Standardization
+*   Mapping to FHIR
 
-```python
-import boto3
-from botocore.config import Config
+Now, **Amazon Bedrock Data Automation** automates most of this pipeline, significantly reducing development and maintenance overhead. This is a very suitable approach for organizations wishing to deploy AI quickly without building models from scratch.
 
-# Configure adaptive retry with 5 max attempts
-config = Config(
-    retries={
-        'max_attempts': 5,
-        'mode': 'adaptive'
-    }
-)
+### Use Case 1: Digitizing Legacy Medical Records
 
-bedrock_client = boto3.client('bedrock-runtime', config=config)
-```
+Hospitals often have millions of paper medical records accumulated over the years. Instead of manual data entry, the scanned documents can be uploaded directly to Amazon S3.
 
-#### Layer 2: Tenacity Retry Decorator
-For precise control over specific API calls, we wrap our Bedrock invocation function with the `tenacity` retry decorator:
+The pipeline automatically:
+*   Extracts data
+*   Standardizes it
+*   Saves it to AWS HealthLake
 
-```python
-from tenacity import retry, stop_after_attempt, wait_random_exponential
-from botocore.exceptions import ClientError
+Afterward, doctors can search by patient name, disease code, or treatment history rather than sorting through folders of paper files.
 
-@retry(
-    stop=stop_after_attempt(5),
-    wait=wait_random_exponential(multiplier=1, max=10),
-    retry=lambda e: isinstance(e, ClientError) and e.response['Error']['Code'] == 'ThrottlingException'
-)
-def invoke_bedrock_model(client, prompt, image_bytes):
-    # API invocation logic here
-    pass
-```
+### Use Case 2: AI-Powered Patient Record Analysis
 
----
+Once data is standardized under FHIR, building downstream AI applications becomes much easier:
+*   AI-generated summaries of patient treatment history.
+*   AI chatbots assisting doctors in querying patient records.
+*   Analysis of treatment trends and clinical research support.
+*   Seamless data sharing between hospital systems.
 
-### 4. Verification with Botocore Stubber
+This forms a solid foundation for deploying Generative AI systems in healthcare.
 
-To verify that our retry logic handles `ThrottlingException` correctly without waiting for real API limits, we write unit tests using `botocore.stub.Stubber` to mock API responses:
+### Why Does AWS Use HealthLake?
 
-```python
-from botocore.stub import Stubber
+What I appreciate is that AWS focuses not only on "reading the document", but also on standardizing the data into FHIR (Fast Healthcare Interoperability Resources)—the global standard for health data exchange.
 
-def test_bedrock_throttling_retry():
-    client = boto3.client('bedrock-runtime')
-    stubber = Stubber(client)
-    
-    # Mock a ThrottlingException on the first call, and success on the second
-    stubber.add_client_error('invoke_model', service_error_code='ThrottlingException', http_status_code=429)
-    stubber.add_response('invoke_model', service_response={})
-    
-    with stubber:
-        # Call the wrapped invoke function
-        response = invoke_bedrock_model_with_retry(client, "test prompt", b"")
-        assert response is not None
-```
+This ensures that processed data is not locked in a silo, but can be integrated with various HIS (Hospital Information System), EMR (Electronic Medical Record), or other AI systems.
 
----
+### Important Notes for Deployment
 
-### 5. Conclusion
+AWS notes that the architecture in the article is for illustrative purposes. For production systems with real patient data, additional security layers must be added:
+*   Data encryption at rest and in transit.
+*   IAM access management following the principle of least privilege.
+*   Audit logging via CloudTrail.
+*   Deployment in environments compliant with HIPAA (if applicable).
 
-API rate limits are a reality in production cloud environments. By integrating an adaptive retry strategy with exponential backoff and jitter, our FastAPI backend handles temporary Bedrock rate limits seamlessly, ensuring that large video files process successfully without user intervention.
+### Summary
+
+In my opinion, the true value of this architecture lies not in individual AI or OCR components, but in the seamless transformation of unstructured medical documents into standardized data ready for downstream systems and AI applications. It's a prime example of AWS combining Serverless + AI + Industry Data Standards to solve a real-world healthcare challenge.
+
+***
+
+*   **Original Blog Link:** [Automate medical record digitization with Amazon Bedrock Data Automation and AWS HealthLake](https://aws.amazon.com/blogs/architecture/automate-medical-record-digitization-with-amazon-bedrock-data-automation-and-aws-healthlake/)
