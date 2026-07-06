@@ -2,6 +2,7 @@ baseURL = "https://thuanjzz.github.io/FCAJ-WorkShop/"
 relativeURLs = false
 canonifyURLs = false
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 theme = "hugo-theme-learn"
 
 [outputs]
@@ -18,34 +19,38 @@ home = [ "HTML", "RSS", "JSON"]
 
 [Languages]
 [Languages.en]
-title = "Internship Report"
-weight = 1
-languageName = "English"
+  title = "Internship Report"
+  weight = 1
+  languageName = "English"
+
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
-identifier = "AWS Study Group"
-url = "https://awsstudygroup.com"
-weight = 20
+  name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
+  identifier = "AWS Study Group"
+  url = "https://awsstudygroup.com"
+  weight = 20
+
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group - FB Group"
-identifier = "AWS Study Group FB"
-url = "https://www.facebook.com/groups/awsstudygroupfcj"
-weight = 20
+  name = "<i class='fab fa-facebook'></i> AWS Study Group - FB Group"
+  identifier = "AWS Study Group FB"
+  url = "https://www.facebook.com/groups/awsstudygroupfcj"
+  weight = 20
 
 [Languages.vi]
-title = "Bao cao thuc tap"
-weight = 2
-languageName = "Tieng Viet"
+  title = "Báo cáo thực tập"
+  weight = 2
+  languageName = "Tiếng Việt"
+
 [[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
-identifier = "AWS Study Group"
-url = "http://awsstudygroup.com"
-weight = 20
+  name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
+  identifier = "AWS Study Group"
+  url = "http://awsstudygroup.com"
+  weight = 20
+
 [[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhom FB"
-identifier = "AWS Study Group FB"
-url = "https://www.facebook.com/groups/awsstudygroupfcj"
-weight = 20
+  name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
+  identifier = "AWS Study Group FB"
+  url = "https://www.facebook.com/groups/awsstudygroupfcj"
+  weight = 20
 
 [markup]
   [markup.goldmark]
