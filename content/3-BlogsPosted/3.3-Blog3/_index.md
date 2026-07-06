@@ -1,31 +1,89 @@
 ---
 title: "Blog 3"
-date: 2024-01-01
-weight: 1
+date: 2026-07-05
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# SESSION POLICIES IN AMAZON EKS POD IDENTITY
+# From ChromaDB to pgvector: Simplifying the AI Stack
 
-Amazon EKS Pod Identity has recently added the session policies feature, allowing you to narrow IAM permissions flexibly and precisely for each pod without needing to create many separate IAM roles. This is an important step forward that helps apply the principle of least privilege more effectively in large-scale Kubernetes environments.
+### 1. Introduction
 
-Key points to know:
+In early iterations of our Video Semantic Search project, we deployed **ChromaDB** as our standalone vector database. While ChromaDB is excellent for prototyping, managing a separate database instance just for vectors added unnecessary complexity to our infrastructure, deployment, and backups.
 
-* A session policy is an inline IAM policy specified when creating or updating a Pod Identity association.
-* Effective permissions = intersection between the IAM role permissions and the session policy → the session policy can only narrow permissions, not expand them.
-* Helps avoid over-permissioning when reusing a single IAM role for multiple workloads with different needs.
-* Supports both same-account and cross-account (via IAM role chaining).
-* Significantly reduces the number of IAM roles that need to be managed, helping avoid hitting IAM quota limits in large clusters.
-* Easily configured through the AWS Management Console, AWS CLI, or AWS SDK when creating an association between a Kubernetes ServiceAccount and an IAM role.
+During Week 7, we made an architectural decision to migrate to **pgvector** — a PostgreSQL extension that allows us to store and query vector embeddings directly inside our primary relational database. This blog post covers the reasoning, migration steps, and query optimization using pgvector.
 
-This feature is especially useful when you have many applications running on the same IAM role but need different permission restrictions (for example: one pod only reads a specific S3 bucket, another pod only calls certain APIs).
+---
 
-...Image...
+### 2. Why pgvector? (Architectural Trade-offs)
 
-...Link...
+| Criteria | ChromaDB (Standalone) | pgvector (PostgreSQL Extension) |
+|---|---|---|
+| **Infrastructure** | Requires a separate service/port | Runs inside existing RDS PostgreSQL |
+| **Data Consistency** | Hard to maintain ACID transactions between SQL metadata and vector DB | Full ACID compliance, native relational JOINs in a single query |
+| **Backup & Restore** | Backup two separate systems | Single backup file (pg_dump) for both relational and vector data |
+| **Learning Curve** | ChromaDB client API | Standard SQL queries |
 
-...Guide...
+---
+
+### 3. Setting Up pgvector
+
+#### Step 1: Enable the Extension
+Once PostgreSQL is running, connect and run:
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+```
+
+#### Step 2: Define the Table Schema
+In our database, each video scene has a detailed AI caption. We convert this caption into a 1024-dimension vector embedding (using Bedrock Titan Embeddings v2). We store this in the `scenes` table:
+
+```sql
+CREATE TABLE scenes (
+    id SERIAL PRIMARY KEY,
+    asset_id INTEGER REFERENCES assets(id) ON DELETE CASCADE,
+    start_time DOUBLE PRECISION,
+    end_time DOUBLE PRECISION,
+    caption TEXT,
+    embedding vector(1024) -- Store 1024-dimension embeddings
+);
+```
+
+---
+
+### 4. Performing Semantic Search with Cosine Similarity
+
+With pgvector, finding the most relevant scenes for a user query is simple. First, we generate the embedding vector of the search query (`[0.123, -0.456, ...]`), then we run a single SQL query:
+
+```sql
+SELECT id, start_time, end_time, caption, 
+       1 - (embedding <=> '[0.123, -0.456, ...]') AS similarity
+FROM scenes
+WHERE asset_id = 4
+ORDER BY embedding <=> '[0.123, -0.456, ...]'
+LIMIT 5;
+```
+
+- `<=>` is the cosine distance operator in pgvector.
+- `1 - (embedding <=> query)` converts cosine distance into **cosine similarity** (closer to 1 is more similar).
+- By adding `WHERE asset_id = 4`, we instantly limit the search scope to a specific video asset, which is faster and cleaner than implementing metadata filtering in ChromaDB.
+
+---
+
+### 5. Optimizing Performance with HNSW Index
+
+As the database grows to hundreds of thousands of scenes, sequential scanning becomes slow. We optimize queries by creating an **HNSW (Hierarchical Navigable Small World)** index:
+
+```sql
+CREATE INDEX ON scenes 
+USING hnsw (embedding vector_cosine_ops) 
+WITH (m = 16, ef_construction = 64);
+```
+
+This index builds a multi-layered graph for approximate nearest neighbor (ANN) search, reducing query latency from milliseconds to microseconds.
+
+---
+
+### 6. Conclusion
+
+Migrating from ChromaDB to pgvector simplified our stack dramatically. We reduced our Docker container count, unified our backup strategy, and enabled powerful relational queries combined with semantic search. For teams already using PostgreSQL, pgvector is a no-brainer.

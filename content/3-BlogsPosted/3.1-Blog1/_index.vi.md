@@ -1,31 +1,74 @@
 ---
 title: "Blog 1"
-date: 2024-01-01
+date: 2026-07-05
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# SESSION POLICIES TRONG AMAZON EKS POD IDENTITY
+# VPC Endpoints: Truy cập Amazon S3 Riêng tư và Bảo mật
 
-Amazon EKS Pod Identity vừa bổ sung tính năng session policies, cho phép bạn thu hẹp quyền IAM một cách linh hoạt và chính xác cho từng pod mà không cần tạo thêm nhiều IAM roles riêng biệt. Đây là bước tiến quan trọng giúp áp dụng nguyên tắc least privilege hiệu quả hơn trong môi trường Kubernetes quy mô lớn.
+### 1. Giới thiệu
 
-Các điểm chính cần nắm:
+Trong kiến trúc đám mây hiện đại, bảo mật và tối ưu chi phí là hai yếu tố hàng đầu. Khi các tài nguyên tính toán bên trong mạng riêng (VPC) cần giao tiếp với các dịch vụ lưu trữ như Amazon S3, việc định tuyến lưu lượng qua internet công cộng là một điểm yếu bảo mật và làm phát sinh chi phí truyền tải dữ liệu NAT Gateway không đáng có.
 
-* Session policy là một IAM policy inline được chỉ định khi tạo hoặc cập nhật Pod Identity association.
-* Quyền hiệu quả = intersection (giao) giữa permissions của IAM role và session policy → session policy chỉ có thể thu hẹp, không thể mở rộng quyền.
-* Giúp tránh tình trạng over-permissioning khi reuse chung một IAM role cho nhiều workloads có nhu cầu khác nhau.
-* Hỗ trợ cả same-account và cross-account (qua IAM role chaining).
-* Giảm đáng kể số lượng IAM roles cần quản lý, tránh chạm giới hạn quota IAM trong cluster lớn.
-* Cấu hình dễ dàng qua AWS Management Console, AWS CLI hoặc AWS SDK khi tạo association giữa Kubernetes ServiceAccount và IAM role.
+AWS PrivateLink giải quyết vấn đề này bằng cách cung cấp kết nối riêng tư thông qua VPC Endpoints. Bài viết này sẽ hướng dẫn cách cấu hình và kiểm tra Gateway và Interface VPC Endpoints để truy cập S3 bảo mật.
 
-Tính năng này đặc biệt hữu ích khi bạn có nhiều ứng dụng chạy trên cùng một IAM role nhưng cần giới hạn quyền khác nhau (ví dụ: một pod chỉ đọc S3 bucket cụ thể, pod khác chỉ gọi một số API nhất định).
+---
 
-...Hình ảnh...
+### 2. So sánh Gateway Endpoints vs. Interface Endpoints
 
-...Link...
+| Đặc điểm | Gateway Endpoint | Interface Endpoint |
+|---|---|---|
+| **Công nghệ** | Định tuyến qua Prefix List trong Route Table | Cấp phát Elastic Network Interface (ENI) với IP riêng |
+| **Cách truy cập** | Cập nhật bảng định tuyến | Phân giải qua DNS |
+| **Phạm vi** | Chỉ trong VPC | Trong VPC & On-premises (qua VPN/Direct Connect) |
+| **Chi phí** | Miễn phí | Tính phí theo giờ + Phí xử lý dữ liệu |
 
-...Hướng dẫn...
+---
+
+### 3. Cấu hình Gateway VPC Endpoint cho S3
+
+Đối với các EC2 instance chạy trong subnet riêng tư (private subnet) trong VPC Cloud, **Gateway Endpoint** là lựa chọn tối ưu nhất về hiệu năng và chi phí.
+
+#### Bước 1: Tạo Endpoint
+1. Mở **Amazon VPC console**.
+2. Chọn **Endpoints** -> **Create endpoint**.
+3. Service category: Chọn **AWS services**.
+4. Service name: Tìm kiếm từ khóa `s3` và chọn dịch vụ có type là **Gateway** (ví dụ: `com.amazonaws.us-east-1.s3`).
+5. VPC: Chọn VPC Cloud của bạn.
+
+#### Bước 2: Cấu hình bảng định tuyến (Route Table)
+1. Ở phần **Route tables**, chọn bảng định tuyến liên kết với các private subnet của bạn.
+2. Hệ thống sẽ tự động thêm một dòng định tuyến trỏ đến S3 prefix list (ví dụ: `pl-63a5400a`) với target là Endpoint ID (`vpce-xxxxxx`).
+
+#### Bước 3: Xác minh kết nối
+SSH vào EC2 instance trong private subnet và chạy lệnh:
+```bash
+aws s3 ls --region us-east-1
+```
+Nếu cấu hình đúng, danh sách S3 buckets sẽ hiển thị ngay lập tức mà không cần đi qua Internet Gateway.
+
+---
+
+### 4. Cấu hình Interface VPC Endpoint cho kết nối On-Premises (Hybrid)
+
+Nếu bạn cần truy cập Amazon S3 từ mạng on-premises (nội bộ doanh nghiệp) thông qua VPN hoặc AWS Direct Connect, bạn không thể sử dụng Gateway Endpoint. Thay vào đó, bạn phải tạo một **Interface Endpoint**.
+
+#### Bước 1: Tạo Endpoint
+1. Tại VPC Console, chọn **Create endpoint**.
+2. Chọn **AWS services** -> Tìm `s3` -> Chọn loại **Interface**.
+3. Chọn VPC và chọn các subnet cụ thể để cấp phát card mạng ảo ENI.
+4. Bật tính năng **Private DNS** để các truy vấn tự động phân giải về IP riêng tư của Endpoint.
+
+#### Bước 2: Kiểm thử kết nối từ On-Premises
+Sử dụng DNS của Interface Endpoint để truy vấn S3 từ máy trạm on-premises:
+```bash
+aws s3 ls --endpoint-url https://bucket.vpce-xxxxxx.s3.us-east-1.vpce.amazonaws.com
+```
+
+---
+
+### 5. Kết luận
+
+Triển khai VPC Endpoints là một thực hành bảo mật cốt lõi trên AWS. Định tuyến lưu lượng S3 nội bộ giúp bảo vệ dữ liệu khỏi internet công cộng và giảm thiểu đáng kể chi phí băng thông NAT Gateway.
