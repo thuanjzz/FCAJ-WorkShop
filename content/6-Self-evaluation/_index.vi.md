@@ -6,13 +6,13 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-Trong thời gian thực tập tại **First Cloud AI Journey (FCAJ)** từ **17/04/2026** đến **05/07/2026**, tôi có cơ hội ứng dụng kiến thức đại học vào môi trường kỹ thuật AI thực tế. Tôi là người chịu trách nhiệm chính về **module AI Pipeline** của dự án `smart_media_analytics_cloudforge` — bao gồm scene detection, speech transcription, vision captioning, vector embedding, Ingest API và Search API. Ngoài ra còn đóng góp vào frontend (Asset Detail Page, Upload flow với WebSocket), lớp tích hợp AWS Bedrock và thiết kế kiến trúc AWS cloud tổng thể.
+Trong thời gian thực tập tại First Cloud AI Journey (FCAJ) từ **17/04/2026** đến **17/07/2026**, tôi có cơ hội ứng dụng kiến thức đại học vào môi trường kỹ thuật AI thực tế. Tôi là người chịu trách nhiệm chính về module AI Pipeline của dự án `smart_media_analytics_cloudforge` - bao gồm scene detection, speech transcription, vision captioning, vector embedding, Ingest API và Search API. Ngoài ra còn đóng góp vào frontend (Asset Detail Page, Upload flow với WebSocket), lớp tích hợp AWS Bedrock và thiết kế kiến trúc AWS cloud tổng thể.
 
-Kỳ thực tập này mở rộng đáng kể hiểu biết của tôi về xây dựng hệ thống AI production trên hạ tầng cloud. Dưới đây là đánh giá trung thực của bản thân:
+Kỳ thực tập này đã giúp mở rộng đáng kể hiểu biết của bản thân về xây dựng hệ thống AI production trên hạ tầng cloud. Dưới đây là đánh giá trung thực của bản thân:
 
 | STT | Tiêu chí | Mô tả | Tốt | Khá | Trung bình |
 | --- | -------- | ----- | --- | --- | ---------- |
-| 1 | **Kiến thức & kỹ năng chuyên môn** | Ứng dụng AI/ML, FastAPI, AWS Bedrock, pgvector, Docker, React trong dự án thực tế | ✅ | ☐ | ☐ |
+| 1 | **Kiến thức & kỹ năng chuyên môn** | Ứng dụng AI/ML, FastAPI, AWS Bedrock, pgvector, Docker, React trong dự án thực tế | ☐ | ✅ | ☐ |
 | 2 | **Khả năng học hỏi** | Nhanh chóng tiếp thu công nghệ mới: Bedrock, pgvector, WaveSurfer.js, ECS Fargate trong thời gian thực tập | ✅ | ☐ | ☐ |
 | 3 | **Tính chủ động** | Chủ động phát hiện và giải quyết vấn đề kỹ thuật (throttling, timeout, version conflicts); đề xuất thay đổi kiến trúc | ✅ | ☐ | ☐ |
 | 4 | **Tinh thần trách nhiệm** | Chịu trách nhiệm toàn bộ module AI pipeline; theo dõi tiến độ qua GitHub Issues; đúng deadline sprint | ✅ | ☐ | ☐ |
@@ -27,7 +27,7 @@ Kỳ thực tập này mở rộng đáng kể hiểu biết của tôi về xâ
 
 ### Điểm cần cải thiện
 
-* **Giao tiếp văn bản async:** Cần ghi lại quyết định thiết kế và blockers chủ động hơn trên GitHub Issues thay vì chỉ trao đổi miệng trong buổi họp.
-* **Ước tính thời gian:** Đánh giá thấp độ phức tạp của tích hợp AWS Bedrock (throttling, IAM permissions, VPC networking) — cần thêm buffer time cho task liên quan cloud.
-* **Kỷ luật testing:** Unit test và integration test được thêm muộn trong dự án; nên áp dụng TDD sớm hơn từ đầu sprint trong các dự án tới.
-* **Viết kỹ thuật tiếng Anh:** Cải thiện khả năng viết tài liệu kỹ thuật rõ ràng, súc tích bằng tiếng Anh cho cộng tác nhóm quốc tế.
+* Giao tiếp văn bản async: Cần ghi lại quyết định thiết kế và blockers chủ động hơn trên GitHub Issues thay vì chỉ trao đổi miệng trong buổi họp.
+* Ước tính thời gian: Đánh giá sai về độ phức tạp của tích hợp AWS Bedrock (throttling, IAM permissions, VPC networking) nên cần thêm buffer time cho task liên quan cloud.
+* Kỷ luật testing: Unit test và integration test được thêm muộn trong dự án; nên áp dụng TDD sớm hơn từ đầu sprint trong các dự án tới.
+* Viết kỹ thuật tiếng Anh: Cải thiện khả năng viết tài liệu kỹ thuật rõ ràng, súc tích bằng tiếng Anh cho cộng tác nhóm quốc tế.
