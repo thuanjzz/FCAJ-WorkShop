@@ -1,6 +1,6 @@
 baseURL = "https://thuanjzz.github.io/FCAJ-WorkShop/"
 relativeURLs = false
-canonifyURLs = false
+canonifyURLs = true
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 theme = "hugo-theme-learn"
