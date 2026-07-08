@@ -19,7 +19,8 @@ pre: " <b> 1.4. </b> "
 | 2   | Tìm hiểu kiến trúc serverless: lợi ích, hạn chế, use cases; API Gateway (REST vs HTTP API) | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 | 3   | API Gateway: resources, methods, stages, deployment; tích hợp Lambda; authorization (IAM, Cognito, Lambda Authorizer) | 12/05/2026 | 12/05/2026 | https://docs.aws.amazon.com/apigateway/ |
 | 4   | Lambda nâng cao: environment variables, layers, concurrency, error handling, dead-letter queues | 13/05/2026 | 13/05/2026 | https://docs.aws.amazon.com/lambda/ |
-| 5   | Thực hành: Xây dựng CRUD REST API với API Gateway + Lambda + DynamoDB; deploy lên stage | 14/05/2026 | 15/05/2026 | https://docs.aws.amazon.com/apigateway/ |
+| 5   | Thực hành: Xây dựng CRUD REST API với API Gateway + Lambda + DynamoDB (viết code Lambda và thiết lập DynamoDB tables) | 14/05/2026 | 14/05/2026 | https://docs.aws.amazon.com/apigateway/ |
+| 6   | Thực hành: Cấu hình API Gateway integration, thiết lập stage và deploy REST API hoàn chỉnh | 15/05/2026 | 15/05/2026 | https://docs.aws.amazon.com/apigateway/ |
 | 7   | Test API bằng Postman: GET, POST, PUT, DELETE; kiểm tra CloudWatch logs để debug | 16/05/2026 | 16/05/2026 | |
 | CN  | So sánh serverless (API Gateway + Lambda) vs. containerized (FastAPI + Docker) — xác nhận lựa chọn App Runner của dự án | 17/05/2026 | 17/05/2026 | |
 

@@ -18,13 +18,12 @@ pre: " <b> 1.10. </b> "
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
 | Mon | **Dashboard ↔ Backend API:** Connect Dashboard to real API — real-time asset state sync (polling + WebSocket fallback) | 22/06/2026 | 22/06/2026 | |
-| Tue | **Asset Detail — Video Streaming:** Implement `GET /api/v1/assets/{id}/stream` with byte-range support for smooth video playback | 23/06/2026 | 23/06/2026 | FastAPI StreamingResponse |
-| Tue | **In-Video Search (Backend):** `POST /api/v1/assets/{id}/search` — embed query → pgvector similarity → return matched scenes with timestamps | 23/06/2026 | 23/06/2026 | |
+| Tue | **Video Streaming & In-Video Search (Backend):** Implement streaming with byte-range support and in-video search API (pgvector similarity) | 23/06/2026 | 23/06/2026 | FastAPI StreamingResponse |
 | Wed | **Audio Waveform:** Integrate WaveSurfer.js for audio waveform visualization; sync playback position with video seek events | 24/06/2026 | 24/06/2026 | WaveSurfer.js docs |
-| Thu | **In-Video Search (Frontend):** Search input → highlight matched scenes in SceneTimeline; auto-jump to scene in VideoPlayer | 25/06/2026 | 25/06/2026 | |
-| Thu | **Upload flow upgrade:** Handle upload cancellation, retry on network error, concurrent upload queue management | 25/06/2026 | 25/06/2026 | |
+| Thu | **In-Video Search (Frontend) & Upload flow:** Integrate UI search to highlight scenes and upgrade concurrent upload queue | 25/06/2026 | 25/06/2026 | |
 | Fri | **WebSocket upgrade:** Heartbeat ping/pong; reconnection logic with exponential backoff on client side | 26/06/2026 | 26/06/2026 | |
-| Sat | **Feedback session:** Receive architecture feedback from FCAJ admin; optimize service communication patterns | 27/06/2026 | 28/06/2026 | |
+| Sat | **Feedback session:** Receive architecture feedback from FCAJ admin; discuss optimization directions | 27/06/2026 | 27/06/2026 | |
+| Sun | **Architecture optimization:** Optimize service communication patterns based on feedback | 28/06/2026 | 28/06/2026 | |
 
 ### Week 10 Achievements:
 

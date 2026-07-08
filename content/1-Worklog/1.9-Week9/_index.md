@@ -16,13 +16,12 @@ pre: " <b> 1.9. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Mon | **Asset Detail Page:** Build React components — VideoPlayer, TranscriptPanel, SceneTimeline, InsightsCard (per Figma) | 15/06/2026 | 16/06/2026 | Figma design |
+| Mon | **Asset Detail Page:** Build React components — VideoPlayer, TranscriptPanel | 15/06/2026 | 15/06/2026 | Figma design |
+| Tue | **Asset Detail Page:** Complete React components — SceneTimeline, InsightsCard (per Figma) | 16/06/2026 | 16/06/2026 | Figma design |
 | Wed | **Upload Flow + WebSocket:** Implement multipart upload → S3 presigned URL; WebSocket endpoint for real-time job progress | 17/06/2026 | 17/06/2026 | FastAPI WebSocket docs |
 | Thu | Add multi-process support for upload: process multiple files concurrently; state recovery on reconnect | 18/06/2026 | 18/06/2026 | |
-| Fri | Build `POST /api/v1/assets/{id}/reingest` and `POST /api/v1/assets/{id}/regenerate-insights` APIs | 19/06/2026 | 19/06/2026 | |
-| Fri | **AI Provider abstraction:** Refactor pipeline to use a provider interface — swap Ollama ↔ Bedrock without changing pipeline code | 19/06/2026 | 19/06/2026 | boto3 docs |
-| Sat | **AWS Bedrock integration:** Implement `BedrockNovaLiteProvider` (captioning) and `BedrockTitanEmbeddingsProvider` (1024-dim vectors) | 20/06/2026 | 20/06/2026 | AWS Bedrock docs |
-| Sat | **pgvector migration:** Add pgvector extension to PostgreSQL; migrate vector storage from ChromaDB to RDS PostgreSQL | 20/06/2026 | 20/06/2026 | pgvector docs |
+| Fri | **APIs & Abstraction:** Build re-ingest/regenerate-insights APIs and refactor AI Provider abstraction layer (swap Ollama ↔ Bedrock) | 19/06/2026 | 19/06/2026 | boto3 docs |
+| Sat | **AWS Bedrock & pgvector migration:** Integrate Bedrock Nova Lite/Titan Embeddings; migrate vector storage from ChromaDB to PostgreSQL | 20/06/2026 | 20/06/2026 | pgvector docs |
 | Sun | **Architecture adjustment:** Update AWS diagram to reflect Bedrock + pgvector changes; review with mentor | 21/06/2026 | 21/06/2026 | |
 
 ### Week 9 Achievements:

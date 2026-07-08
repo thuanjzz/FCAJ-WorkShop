@@ -16,13 +16,12 @@ pre: " <b> 1.9. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| 2   | **Asset Detail Page:** Xây dựng React components — VideoPlayer, TranscriptPanel, SceneTimeline, InsightsCard (theo Figma) | 15/06/2026 | 16/06/2026 | Figma design |
+| 2   | **Asset Detail Page:** Xây dựng React components — VideoPlayer, TranscriptPanel | 15/06/2026 | 15/06/2026 | Figma design |
+| 3   | **Asset Detail Page:** Hoàn thiện React components — SceneTimeline, InsightsCard (theo Figma) | 16/06/2026 | 16/06/2026 | Figma design |
 | 4   | **Upload Flow + WebSocket:** Implement multipart upload → S3 presigned URL; WebSocket endpoint real-time job progress | 17/06/2026 | 17/06/2026 | FastAPI WebSocket docs |
 | 5   | Thêm multi-process cho upload: xử lý nhiều file đồng thời; state recovery khi reconnect | 18/06/2026 | 18/06/2026 | |
-| 6   | Xây dựng API `POST /api/v1/assets/{id}/reingest` và `POST /api/v1/assets/{id}/regenerate-insights` | 19/06/2026 | 19/06/2026 | |
-| 6   | **AI Provider abstraction:** Refactor pipeline dùng provider interface — swap Ollama ↔ Bedrock không cần sửa pipeline code | 19/06/2026 | 19/06/2026 | boto3 docs |
-| 7   | **Tích hợp AWS Bedrock:** Implement `BedrockNovaLiteProvider` (captioning) và `BedrockTitanEmbeddingsProvider` (1024-dim vectors) | 20/06/2026 | 20/06/2026 | AWS Bedrock docs |
-| 7   | **Migration pgvector:** Thêm extension pgvector vào PostgreSQL; chuyển vector storage từ ChromaDB sang RDS PostgreSQL | 20/06/2026 | 20/06/2026 | pgvector docs |
+| 6   | **APIs & Abstraction:** Xây dựng API re-ingest/regenerate-insights và refactor AI Provider abstraction layer (swap Ollama ↔ Bedrock) | 19/06/2026 | 19/06/2026 | boto3 docs |
+| 7   | **AWS Bedrock & pgvector migration:** Tích hợp Bedrock Nova Lite/Titan Embeddings; chuyển vector storage từ ChromaDB sang PostgreSQL | 20/06/2026 | 20/06/2026 | pgvector docs |
 | CN  | **Điều chỉnh kiến trúc AWS:** Cập nhật diagram phản ánh thay đổi Bedrock + pgvector; review với mentor | 21/06/2026 | 21/06/2026 | |
 
 ### Kết quả đạt được tuần 9:

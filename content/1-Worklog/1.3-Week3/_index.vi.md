@@ -22,6 +22,7 @@ pre: " <b> 1.3. </b> "
 | 5   | Thực hành: Tạo bảng DynamoDB; CRUD với boto3 (Python); Query với GSI | 07/05/2026 | 07/05/2026 | |
 | 6   | DynamoDB Streams, TTL, DAX; backup và restore | 08/05/2026 | 08/05/2026 | https://docs.aws.amazon.com/dynamodb/ |
 | 7   | Ôn lại kiến thức DynamoDB; so sánh với lựa chọn PostgreSQL + pgvector của dự án | 09/05/2026 | 09/05/2026 | |
+| CN  | Tổng kết tuần 3: Đánh giá hiệu năng DynamoDB và chuẩn bị tài liệu thiết kế database cho Sprint 1 | 10/05/2026 | 10/05/2026 | |
 
 ### Kết quả đạt được tuần 3:
 

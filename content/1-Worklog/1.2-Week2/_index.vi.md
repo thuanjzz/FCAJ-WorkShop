@@ -20,7 +20,8 @@ pre: " <b> 1.2. </b> "
 | 3   | Thực hành S3: Tạo bucket, upload/download object, bật versioning, cấu hình lifecycle rules, host static website | 28/04/2026 | 28/04/2026 | https://docs.aws.amazon.com/s3/ |
 | 4   | Tìm hiểu AWS Lambda: kiến trúc event-driven, trigger (S3, API Gateway, SQS), execution environment, cold start, IAM roles | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | 5   | Thực hành Lambda: Tạo Lambda function Python được trigger bởi S3 event; test với sample events | 30/04/2026 | 30/04/2026 | https://docs.aws.amazon.com/lambda/ |
-| 6   | Tìm hiểu VPC: subnets (public/private), route tables, Internet Gateway, NAT Gateway, Security Groups vs NACLs | 01/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6   | Tìm hiểu VPC: subnets (public/private), route tables, Internet Gateway, NAT Gateway | 01/05/2026 | 01/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 7   | Tìm hiểu VPC Security: so sánh Security Groups vs NACLs (stateless vs stateful) | 02/05/2026 | 02/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 | CN  | Thực hành VPC: Tạo VPC tùy chỉnh với public/private subnets; triển khai EC2 trong mỗi subnet; kiểm tra kết nối | 03/05/2026 | 03/05/2026 | https://docs.aws.amazon.com/vpc/ |
 
 ### Kết quả đạt được tuần 2:

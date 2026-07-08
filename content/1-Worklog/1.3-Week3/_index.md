@@ -22,6 +22,7 @@ pre: " <b> 1.3. </b> "
 | Thu | **Practice:** Design and create a DynamoDB table; perform CRUD with boto3 (Python); implement Query with GSI | 07/05/2026 | 07/05/2026 | https://docs.aws.amazon.com/sdk-for-python/ |
 | Fri | DynamoDB Streams, TTL (Time-To-Live), DynamoDB Accelerator (DAX); backup and restore | 08/05/2026 | 08/05/2026 | https://docs.aws.amazon.com/dynamodb/ |
 | Sat | Review and consolidate DynamoDB knowledge; compare with project's PostgreSQL + pgvector choice | 09/05/2026 | 09/05/2026 | |
+| Sun | Consolidate Week 3: Evaluate DynamoDB performance and prepare database architecture documentation for Sprint 1 | 10/05/2026 | 10/05/2026 | |
 
 ### Week 3 Achievements:
 

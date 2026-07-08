@@ -18,15 +18,13 @@ pre: " <b> 1.11. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| 2   | **AI Pipeline E2E hoàn thiện:** Pipeline với AWS Bedrock (Nova Lite + Titan Embeddings) + Amazon Transcribe; validate trên 3 video benchmark | 29/06/2026 | 29/06/2026 | |
-| 2   | **Docker → AWS Fargate:** Đóng gói AI pipeline thành Docker image; push lên Amazon ECR; cấu hình ECS Fargate Task Definition | 29/06/2026 | 30/06/2026 | AWS ECR, ECS Fargate docs |
-| 3   | **Đồng bộ Cloud Storage:** Keyframes và metadata tự động sync lên Amazon S3; cập nhật asset URL dùng CloudFront CDN | 30/06/2026 | 30/06/2026 | boto3 S3 docs |
-| 4   | **Mở rộng Backend API:** `GET /api/v1/assets/{id}/extract-clip` — trích clip theo time range; Tag API dynamic (CRUD) | 01/07/2026 | 01/07/2026 | |
-| 4   | **Asset Detail — Auto-scroll Transcript:** Transcript panel tự cuộn theo segment hiện tại khi video phát | 01/07/2026 | 01/07/2026 | |
-| 5   | **Dashboard — Loading Skeleton:** Thêm skeleton loaders cho asset cards và kết quả tìm kiếm (tránh layout shift) | 02/07/2026 | 02/07/2026 | |
-| 5   | Fix UI bugs: edge case SceneTimeline, resize waveform, layout mobile viewport | 02/07/2026 | 02/07/2026 | |
-| 6   | **Architecture redesign (clean):** Cấu trúc lại FastAPI project: `api/`, `services/`, `repositories/`, `models/`; áp dụng dependency injection | 03/07/2026 | 04/07/2026 | |
-| 7   | Test hệ thống end-to-end cuối cùng: upload → process → search → stream; xác nhận toàn bộ tính năng hoạt động | 04/07/2026 | 05/07/2026 | |
+| 2   | **AI Pipeline & Docker Fargate:** Đóng gói AI pipeline (AWS Bedrock + Transcribe) thành Docker image; push lên Amazon ECR | 29/06/2026 | 29/06/2026 | AWS ECR, ECS Fargate docs |
+| 3   | **Đồng bộ Cloud Storage:** Keyframes và metadata tự động sync lên Amazon S3; cấu hình ECS Fargate Task Definition | 30/06/2026 | 30/06/2026 | boto3 S3 docs |
+| 4   | **Mở rộng Backend API & Auto-scroll:** API trích xuất clip theo time range, Tag API dynamic và auto-scroll transcript panel | 01/07/2026 | 01/07/2026 | |
+| 5   | **UI UX & Loading Skeleton:** Thêm skeleton loaders tránh layout shift và sửa lỗi UI (waveform, mobile viewport) | 02/07/2026 | 02/07/2026 | |
+| 6   | **Architecture redesign (clean):** Khởi động tái cấu trúc FastAPI project theo mô hình layered: api, services, repositories, models | 03/07/2026 | 03/07/2026 | |
+| 7   | **Clean architecture & Verification:** Hoàn thiện áp dụng dependency injection; chạy bộ unit tests kiểm tra | 04/07/2026 | 04/07/2026 | |
+| CN  | **E2E Final Testing:** Chạy kịch bản tích hợp hoàn chỉnh (upload → process → search → stream) xác nhận toàn bộ tính năng | 05/07/2026 | 05/07/2026 | |
 
 ### Kết quả đạt được tuần 11:
 

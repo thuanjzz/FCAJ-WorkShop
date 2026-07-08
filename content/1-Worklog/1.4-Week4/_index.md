@@ -19,7 +19,8 @@ pre: " <b> 1.4. </b> "
 | Mon | Study serverless architecture principles: benefits, limitations, use cases; API Gateway concepts (REST vs. HTTP API) | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Tue | API Gateway: resources, methods, stages, deployment; integration with Lambda; authorization types (IAM, Cognito, Lambda Authorizer) | 12/05/2026 | 12/05/2026 | https://docs.aws.amazon.com/apigateway/ |
 | Wed | Lambda advanced: environment variables, layers, concurrency, error handling, dead-letter queues | 13/05/2026 | 13/05/2026 | https://docs.aws.amazon.com/lambda/ |
-| Thu | **Practice:** Build a CRUD REST API with API Gateway + Lambda + DynamoDB; deploy to a stage | 14/05/2026 | 15/05/2026 | https://docs.aws.amazon.com/apigateway/ |
+| Thu | **Practice:** Build a CRUD REST API with API Gateway + Lambda + DynamoDB (write Lambda code and set up DynamoDB tables) | 14/05/2026 | 14/05/2026 | https://docs.aws.amazon.com/apigateway/ |
+| Fri | **Practice:** Configure API Gateway integration, set up stage and deploy the complete REST API | 15/05/2026 | 15/05/2026 | https://docs.aws.amazon.com/apigateway/ |
 | Sat | Test API with Postman: GET, POST, PUT, DELETE endpoints; check CloudWatch logs for debugging | 16/05/2026 | 16/05/2026 | |
 | Sun | Compare serverless (API Gateway + Lambda) vs. containerized (FastAPI + Docker) — validate the project's App Runner choice | 17/05/2026 | 17/05/2026 | |
 

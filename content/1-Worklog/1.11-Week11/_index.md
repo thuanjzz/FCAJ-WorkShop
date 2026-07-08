@@ -18,15 +18,13 @@ pre: " <b> 1.11. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Mon | **AI Pipeline E2E finalize:** End-to-end pipeline with AWS Bedrock (Nova Lite + Titan Embeddings) + Amazon Transcribe; validate on all 3 benchmark videos | 29/06/2026 | 29/06/2026 | |
-| Mon | **Docker → AWS Fargate:** Package AI pipeline as Docker image; push to Amazon ECR; configure ECS Fargate Task Definition | 29/06/2026 | 30/06/2026 | AWS ECR, ECS Fargate docs |
-| Tue | **Cloud Storage sync:** Keyframes and metadata auto-synced to Amazon S3; update asset URLs to CloudFront CDN | 30/06/2026 | 30/06/2026 | boto3 S3 docs |
-| Wed | **Backend API expansion:** `GET /api/v1/assets/{id}/extract-clip` — extract video clip by time range; dynamic Tag API (CRUD) | 01/07/2026 | 01/07/2026 | |
-| Wed | **Asset Detail — Auto-scroll Transcript:** Transcript panel auto-scrolls to current segment as video plays | 01/07/2026 | 01/07/2026 | |
-| Thu | **Dashboard — Loading Skeleton:** Add skeleton loaders for asset cards and search results (prevents layout shift) | 02/07/2026 | 02/07/2026 | |
-| Thu | Fix UI bugs: scene timeline edge case, waveform resize, mobile viewport layout | 02/07/2026 | 02/07/2026 | |
-| Fri | **Architecture redesign (clean):** Restructure FastAPI project: `api/`, `services/`, `repositories/`, `models/`; apply dependency injection | 03/07/2026 | 04/07/2026 | |
-| Sat | Final end-to-end system test: upload → process → search → stream; validate all features work together | 04/07/2026 | 05/07/2026 | |
+| Mon | **AI Pipeline & Docker Fargate:** Package AI pipeline (AWS Bedrock + Transcribe) as Docker image; push to Amazon ECR | 29/06/2026 | 29/06/2026 | AWS ECR, ECS Fargate docs |
+| Tue | **Cloud Storage sync:** Keyframes and metadata auto-synced to S3; configure ECS Fargate Task Definition | 30/06/2026 | 30/06/2026 | boto3 S3 docs |
+| Wed | **Backend API expansion & Auto-scroll:** Clip extraction API, dynamic Tag API, and transcript auto-scroll panel | 01/07/2026 | 01/07/2026 | |
+| Thu | **UI UX & Loading Skeleton:** Add skeleton loaders to prevent layout shift and fix UI bugs (waveform, mobile viewport) | 02/07/2026 | 02/07/2026 | |
+| Fri | **Architecture redesign (clean):** Start restructing FastAPI project into layered layout: api, services, repositories, models | 03/07/2026 | 03/07/2026 | |
+| Sat | **Clean architecture & Verification:** Complete dependency injection implementation; run unit tests to verify structure | 04/07/2026 | 04/07/2026 | |
+| Sun | **E2E Final Testing:** Run complete integration scenario (upload → process → search → stream) and validate all features | 05/07/2026 | 05/07/2026 | |
 
 ### Week 11 Achievements:
 
