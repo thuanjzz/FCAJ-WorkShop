@@ -17,11 +17,12 @@ pre: " <b> 1.6. </b> "
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
 | 2   | Debug vấn đề networking Docker Compose: kết nối FastAPI ↔ PostgreSQL (asyncpg); fix CORS | 25/05/2026 | 25/05/2026 | |
-| 4   | Giải quyết xung đột phiên bản Python: pin faster-whisper==1.0.3, ctranslate2==4.4.0, torch==2.2.0 trong requirements.txt | 27/05/2026 | 27/05/2026 | |
-| 5   | Sửa lỗi Ollama model loading trên Windows host: cấu hình biến OLLAMA_HOST cho Docker network | 28/05/2026 | 28/05/2026 | |
-| 6   | Kiểm thử pipeline end-to-end với video mẫu 17s.MOV: scene detect → transcribe → caption → lưu vào DB | 29/05/2026 | 29/05/2026 | |
-| 7   | Chuẩn hóa deployment: viết Makefile (`make up`, `make down`, `make logs`, `make test`); cập nhật README | 30/05/2026 | 30/05/2026 | |
-| CN  | Thêm input validation (giới hạn file size, kiểm tra định dạng video); implement error handling middleware FastAPI | 31/05/2026 | 31/05/2026 | |
+| 3   | Giải quyết xung đột phiên bản Python: pin faster-whisper==1.0.3, ctranslate2==4.4.0, torch==2.2.0 trong requirements.txt | 26/05/2026 | 26/05/2026 | |
+| 4   | Sửa lỗi Ollama model loading trên Windows host: cấu hình biến OLLAMA_HOST cho Docker network | 27/05/2026 | 27/05/2026 | |
+| 5   | Kiểm thử pipeline end-to-end với video mẫu 17s.MOV: scene detect → transcribe → caption → lưu vào DB | 28/05/2026 | 28/05/2026 | |
+| 6   | Chuẩn hóa deployment: viết Makefile (`make up`, `make down`, `make logs`, `make test`); cập nhật README | 29/05/2026 | 29/05/2026 | |
+| 7   | Thêm input validation (giới hạn file size, kiểm tra định dạng video); implement error handling middleware FastAPI | 30/05/2026 | 30/05/2026 | |
+| CN  | Chuẩn bị integration checklist Sprint 2: xác minh API endpoints, database migrations, contract frontend ↔ backend | 31/05/2026 | 31/05/2026 | |
 
 ### Kết quả đạt được tuần 6:
 

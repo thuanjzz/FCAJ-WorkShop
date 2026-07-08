@@ -16,7 +16,6 @@ pre: " <b> 1.7. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| 2   | Chuẩn bị integration checklist Sprint 2: xác minh API endpoints, database migrations, contract frontend ↔ backend | 01/06/2026 | 01/06/2026 | |
 | 2   | Hoàn thiện module **Scene Detection**: PySceneDetect + OpenCV, threshold tuning, trích keyframe ra disk | 01/06/2026 | 01/06/2026 | PySceneDetect docs |
 | 3   | Hoàn thiện module **Transcription**: faster-whisper (int8, CPU); output segment-level với timestamps; phát hiện ngôn ngữ | 02/06/2026 | 02/06/2026 | faster-whisper GitHub |
 | 4   | Hoàn thiện module **Captioning**: Ollama qwen2.5-vl:3b; resize keyframe về 720p trước inference; output JSON có cấu trúc | 03/06/2026 | 03/06/2026 | Ollama docs |

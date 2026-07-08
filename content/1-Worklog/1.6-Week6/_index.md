@@ -17,11 +17,12 @@ pre: " <b> 1.6. </b> "
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
 | Mon | Debug Docker Compose networking issues: FastAPI ↔ PostgreSQL connection pooling (asyncpg); fix CORS settings | 25/05/2026 | 25/05/2026 | |
-| Wed | Resolve Python version conflicts: pin faster-whisper==1.0.3, ctranslate2==4.4.0, torch==2.2.0 in requirements.txt | 27/05/2026 | 27/05/2026 | |
-| Thu | Fix Ollama model loading issue on Windows host: configure OLLAMA_HOST env var for Docker network access | 28/05/2026 | 28/05/2026 | |
-| Fri | End-to-end pipeline test with 17s.MOV sample video: scene detect → transcribe → caption → store in DB | 29/05/2026 | 29/05/2026 | |
-| Sat | Standardize deployment: write Makefile commands (`make up`, `make down`, `make logs`, `make test`); update README | 30/05/2026 | 30/05/2026 | |
-| Sun | Add input validation (file size limit, video format check); implement basic error handling middleware in FastAPI | 31/05/2026 | 31/05/2026 | |
+| Tue | Resolve Python version conflicts: pin faster-whisper==1.0.3, ctranslate2==4.4.0, torch==2.2.0 in requirements.txt | 26/05/2026 | 26/05/2026 | |
+| Wed | Fix Ollama model loading issue on Windows host: configure OLLAMA_HOST env var for Docker network access | 27/05/2026 | 27/05/2026 | |
+| Thu | End-to-end pipeline test with 17s.MOV sample video: scene detect → transcribe → caption → store in DB | 28/05/2026 | 28/05/2026 | |
+| Fri | Standardize deployment: write Makefile commands (`make up`, `make down`, `make logs`, `make test`); update README | 29/05/2026 | 29/05/2026 | |
+| Sat | Add input validation (file size limit, video format check); implement basic error handling middleware in FastAPI | 30/05/2026 | 30/05/2026 | |
+| Sun | Prepare integration checklist for Sprint 2: API endpoints, database migrations, frontend ↔ backend contract verification | 31/05/2026 | 31/05/2026 | |
 
 ### Week 6 Achievements:
 

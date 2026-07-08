@@ -16,7 +16,6 @@ pre: " <b> 1.7. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Mon | Prepare integration checklist for Sprint 2: API endpoints, database migrations, frontend ↔ backend contract verification | 01/06/2026 | 01/06/2026 | |
 | Mon | Complete **Scene Detection** module: PySceneDetect + OpenCV, threshold tuning, keyframe extraction to disk | 01/06/2026 | 01/06/2026 | PySceneDetect docs |
 | Tue | Complete **Transcription** module: faster-whisper (int8, CPU); segment-level output with timestamps; language detection | 02/06/2026 | 02/06/2026 | faster-whisper GitHub |
 | Wed | Complete **Captioning** module: Ollama qwen2.5-vl:3b; resize keyframes to 720p before inference; structured JSON output | 03/06/2026 | 03/06/2026 | Ollama docs |
