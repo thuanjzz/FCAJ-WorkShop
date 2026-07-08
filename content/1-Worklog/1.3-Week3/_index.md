@@ -1,12 +1,12 @@
 ---
 title: "Week 3 Worklog"
-date: 2026-05-03
+date: 2026-05-04
 weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
 
-### Week 3 Objectives (03/05 – 10/05/2026):
+### Week 3 Objectives (04/05 – 10/05/2026):
 
 * Understand DynamoDB and NoSQL database concepts.
 * Design DynamoDB tables with appropriate partition keys and sort keys.
@@ -16,7 +16,7 @@ pre: " <b> 1.3. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Sun | Study NoSQL concepts vs. relational DB; DynamoDB core concepts: tables, items, attributes, primary keys | 03/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| Mon | Study NoSQL concepts vs. relational DB; DynamoDB core concepts: tables, items, attributes, primary keys | 04/05/2026 | 04/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Tue | DynamoDB data modeling: partition key, sort key, GSI (Global Secondary Index), LSI (Local Secondary Index) | 05/05/2026 | 05/05/2026 | https://docs.aws.amazon.com/dynamodb/ |
 | Wed | Query vs. Scan operations: performance implications, filter expressions, ProjectionExpression | 06/05/2026 | 06/05/2026 | https://docs.aws.amazon.com/dynamodb/ |
 | Thu | **Practice:** Design and create a DynamoDB table; perform CRUD with boto3 (Python); implement Query with GSI | 07/05/2026 | 07/05/2026 | https://docs.aws.amazon.com/sdk-for-python/ |

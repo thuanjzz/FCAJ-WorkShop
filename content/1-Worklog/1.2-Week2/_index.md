@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
-### Week 2 Objectives (26/04 – 03/05/2026):
+### Week 2 Objectives (27/04 – 03/05/2026):
 
 * Explore and practice with core AWS services: S3, Lambda, VPC.
 * Understand AWS networking fundamentals and cloud architecture patterns.
@@ -16,7 +16,7 @@ pre: " <b> 1.2. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Sun | Study Amazon S3: bucket creation, object storage, versioning, lifecycle policies, presigned URLs, static website hosting | 26/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| Mon | Study Amazon S3: bucket creation, object storage, versioning, lifecycle policies, presigned URLs, static website hosting | 27/04/2026 | 27/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Tue | **Practice S3:** Create bucket, upload/download objects, enable versioning, configure lifecycle rules, host a static website | 28/04/2026 | 28/04/2026 | https://docs.aws.amazon.com/s3/ |
 | Wed | Study AWS Lambda: event-driven architecture, triggers (S3, API Gateway, SQS), execution environment, cold start, IAM roles | 29/04/2026 | 29/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Thu | **Practice Lambda:** Create a Python Lambda function triggered by S3 events; test with sample events | 30/04/2026 | 30/04/2026 | https://docs.aws.amazon.com/lambda/ |

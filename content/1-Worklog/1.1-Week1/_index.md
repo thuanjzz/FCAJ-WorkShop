@@ -20,8 +20,8 @@ pre: " <b> 1.1. </b> "
 | Mon | Overview of AWS cloud computing: service models (IaaS, PaaS, SaaS), global infrastructure (Regions, AZs, Edge Locations) | 20/04/2026 | 20/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Tue | Create AWS Free Tier account; explore AWS Management Console; install & configure AWS CLI (Access Key, Secret Key, Region) | 21/04/2026 | 21/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Wed | Study EC2 fundamentals: instance types, AMI, EBS, Security Groups, Elastic IP; SSH connection methods | 22/04/2026 | 23/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| Thu | **Practice:** Launch EC2 instance (t2.micro), connect via SSH, attach and format an EBS volume | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| Fri | Study IAM: users, groups, roles, policies; create IAM user with least-privilege permissions; configure MFA | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| Fri | **Practice:** Launch EC2 instance (t2.micro), connect via SSH, attach and format an EBS volume | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| Sat | Study IAM: users, groups, roles, policies; create IAM user with least-privilege permissions; configure MFA | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ### Week 1 Achievements:
 

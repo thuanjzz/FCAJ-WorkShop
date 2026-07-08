@@ -16,12 +16,12 @@ pre: " <b> 1.1. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| 6   | Làm quen với thành viên FCAJ; đọc và ghi chú nội quy, quy định thực tập | 17/04/2026 | 17/04/2026 | |
+| 6   | Làm quen với thành viên FCAJ, kết nối với các thành viên tham gia thực tập để thành lập nhóm; đọc và ghi chú nội quy, quy định thực tập | 17/04/2026 | 17/04/2026 | |
 | 2   | Tổng quan cloud computing AWS: mô hình dịch vụ (IaaS, PaaS, SaaS), hạ tầng toàn cầu (Regions, AZs, Edge Locations) | 20/04/2026 | 20/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | 3   | Tạo tài khoản AWS Free Tier; khám phá AWS Management Console; cài đặt & cấu hình AWS CLI (Access Key, Secret Key, Region) | 21/04/2026 | 21/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 | 4   | Tìm hiểu EC2: instance types, AMI, EBS, Security Groups, Elastic IP; các cách SSH vào EC2 | 22/04/2026 | 23/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 5   | **Thực hành:** Tạo EC2 instance (t2.micro), kết nối SSH, gắn và format EBS volume | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
-| 6   | Tìm hiểu IAM: users, groups, roles, policies; tạo IAM user với quyền tối thiểu; cấu hình MFA | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 6   | Thực hành: Tạo EC2 instance (t2.micro), kết nối SSH, gắn và format EBS volume | 24/04/2026 | 24/04/2026 | https://cloudjourney.awsstudygroup.com/ |
+| 7   | Tìm hiểu IAM: users, groups, roles, policies; tạo IAM user với quyền tối thiểu; cấu hình MFA | 25/04/2026 | 25/04/2026 | https://cloudjourney.awsstudygroup.com/ |
 
 ### Kết quả đạt được tuần 1:
 

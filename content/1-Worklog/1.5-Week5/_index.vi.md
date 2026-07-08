@@ -1,12 +1,12 @@
 ---
 title: "Worklog Tuần 5"
-date: 2026-05-17
+date: 2026-05-18
 weight: 5
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
 
-### Mục tiêu tuần 5 (17/05 – 24/05/2026):
+### Mục tiêu tuần 5 (18/05 – 24/05/2026):
 
 * Khởi động **Sprint 1** của dự án `smart_media_analytics_cloudforge`.
 * Xác định API Data Contract và schema cơ sở dữ liệu giữa frontend và backend.
@@ -17,7 +17,7 @@ pre: " <b> 1.5. </b> "
 
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| CN  | Sprint 1 planning: xác định user stories, phân chia task, thiết lập GitHub Project board | 17/05/2026 | 18/05/2026 | GitHub Issues Board |
+| 2   | Sprint 1 planning: xác định user stories, phân chia task, thiết lập GitHub Project board | 18/05/2026 | 18/05/2026 | GitHub Issues Board |
 | 3   | Thiết kế API Data Contract: OpenAPI spec cho Ingest API, Search API; định nghĩa request/response schemas | 19/05/2026 | 19/05/2026 | |
 | 4   | Thiết kế PostgreSQL schema: bảng `assets`, `scenes`, `transcripts`, `embeddings`; vector column với pgvector | 20/05/2026 | 20/05/2026 | |
 | 5   | Cài đặt Docker Compose: FastAPI + Uvicorn, PostgreSQL 16, ChromaDB, Redis; cấu hình biến môi trường | 21/05/2026 | 21/05/2026 | |

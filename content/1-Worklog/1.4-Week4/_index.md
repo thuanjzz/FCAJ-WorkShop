@@ -1,12 +1,12 @@
 ---
 title: "Week 4 Worklog"
-date: 2026-05-10
+date: 2026-05-11
 weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-### Week 4 Objectives (10/05 – 17/05/2026):
+### Week 4 Objectives (11/05 – 17/05/2026):
 
 * Understand serverless architecture with API Gateway + Lambda.
 * Build and deploy a basic serverless REST API.
@@ -16,7 +16,7 @@ pre: " <b> 1.4. </b> "
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Sun | Study serverless architecture principles: benefits, limitations, use cases; API Gateway concepts (REST vs. HTTP API) | 10/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
+| Mon | Study serverless architecture principles: benefits, limitations, use cases; API Gateway concepts (REST vs. HTTP API) | 11/05/2026 | 11/05/2026 | https://cloudjourney.awsstudygroup.com/ |
 | Tue | API Gateway: resources, methods, stages, deployment; integration with Lambda; authorization types (IAM, Cognito, Lambda Authorizer) | 12/05/2026 | 12/05/2026 | https://docs.aws.amazon.com/apigateway/ |
 | Wed | Lambda advanced: environment variables, layers, concurrency, error handling, dead-letter queues | 13/05/2026 | 13/05/2026 | https://docs.aws.amazon.com/lambda/ |
 | Thu | **Practice:** Build a CRUD REST API with API Gateway + Lambda + DynamoDB; deploy to a stage | 14/05/2026 | 15/05/2026 | https://docs.aws.amazon.com/apigateway/ |
