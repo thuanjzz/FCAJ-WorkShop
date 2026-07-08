@@ -17,7 +17,7 @@ AWS proposes a serverless, AI-powered architecture to solve this.
 
 The entire workflow is triggered automatically as soon as a document is uploaded to Amazon S3.
 
-![Architecture Diagram](/images/healthlake_architecture.png)
+![Architecture Diagram](/images/3-BlogsPosted/3.2-Blog2/healthlake_architecture.png)
 
 The processing flow consists of the following steps:
 

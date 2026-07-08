@@ -26,7 +26,7 @@ Before diving into code, you need to understand a few foundational concepts:
 
 A complete search application on AWS is built with a multi-layered security model, where components coordinate tightly from the frontend to the data cluster.
 
-![Sample Application Architecture](/images/opensearch_architecture.png)
+![Sample Application Architecture](/images/3-BlogsPosted/3.1-Blog1/opensearch_architecture.png)
 
 #### Detailed Workflow
 

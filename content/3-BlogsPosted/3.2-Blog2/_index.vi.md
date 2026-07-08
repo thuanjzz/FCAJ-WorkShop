@@ -5,7 +5,7 @@ weight: 2
 chapter: false
 ---
 
-Hôm nay mình muốn chia sẻ một kiến trúc khá thú vị từ AWS dành cho lĩnh vực y tế: **tự động số hóa hồ sơ bệnh án bằng AI với Amazon Bedrock Data Automation kết hợp AWS HealthLake**.
+Hôm nay mình muốn chia sẻ một kiến trúc khá thú vị từ AWS dành cho lĩnh vực y tế: tự động số hóa hồ sơ bệnh án bằng AI với Amazon Bedrock Data Automation kết hợp AWS HealthLake.
 
 Trong quá trình chuyển đổi số, rất nhiều bệnh viện vẫn đang lưu trữ bệnh án dưới dạng giấy hoặc PDF scan. Điều này khiến việc tìm kiếm thông tin, tổng hợp lịch sử điều trị hay chia sẻ dữ liệu giữa các hệ thống mất khá nhiều thời gian. Nếu nhập liệu thủ công thì vừa tốn nhân lực, vừa dễ xảy ra sai sót.
 
@@ -17,7 +17,7 @@ AWS đưa ra một kiến trúc serverless kết hợp AI để giải quyết b
 
 Toàn bộ quy trình được kích hoạt tự động ngay khi hồ sơ được tải lên Amazon S3.
 
-![Kiến trúc hoạt động](/images/healthlake_architecture.png)
+![Kiến trúc hoạt động](/images/3-BlogsPosted/3.2-Blog2/healthlake_architecture.png)
 
 Luồng xử lý gồm các bước:
 
@@ -43,7 +43,7 @@ Thông thường để xử lý hồ sơ bệnh án, doanh nghiệp sẽ phải 
 *   Chuẩn hóa dữ liệu
 *   Mapping sang chuẩn FHIR
 
-Giờ đây **Amazon Bedrock Data Automation** giúp tự động hóa phần lớn quy trình này, giảm đáng kể công sức phát triển và bảo trì. Đây là hướng tiếp cận rất phù hợp với các tổ chức muốn nhanh chóng triển khai AI mà không cần xây dựng mô hình từ đầu.
+Giờ đây Amazon Bedrock Data Automation giúp tự động hóa phần lớn quy trình này, giảm đáng kể công sức phát triển và bảo trì. Đây là hướng tiếp cận rất phù hợp với các tổ chức muốn nhanh chóng triển khai AI mà không cần xây dựng mô hình từ đầu.
 
 ### Use Case 1: Số hóa bệnh án cũ
 

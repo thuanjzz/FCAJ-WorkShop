@@ -15,3 +15,7 @@ This blog post introduces Amazon OpenSearch Service, a fully managed search and 
 ### [Blog 2 — Automate medical record digitization with Amazon Bedrock Data Automation and AWS HealthLake](3.2-Blog2/)
 
 This blog post shares a serverless, AI-driven architecture for digitizing unstructured medical records (scanned PDFs or images) using Amazon Bedrock Data Automation and AWS HealthLake. It covers the end-to-end event-driven workflow, the benefits of automated data standardisation into FHIR R4 formatting, downstream clinical use cases, and security compliance considerations.
+
+### [Blog 3 — How AI and Robots Are Transforming Sustainable Agriculture with Amazon SageMaker AI](3.3-Blog3/)
+
+This blog post explores how Aigen, an autonomous agricultural robotics company, modernized its AI pipeline using Amazon SageMaker AI. It covers the cloud-native architecture for continuous model training, active learning to reduce labeling costs, real-world use cases such as weed detection and adaptive model improvement, and the measurable results achieved — including a 20x increase in labeling throughput and a 22.5x reduction in per-image labeling costs.
