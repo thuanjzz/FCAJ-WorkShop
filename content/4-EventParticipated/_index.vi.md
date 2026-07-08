@@ -6,30 +6,26 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-> Trong thời gian thực tập tại First Cloud AI Journey (FCAJ), tôi đã tham gia các sự kiện sau, mang lại nhiều kiến thức kỹ thuật và mạng lưới chuyên nghiệp quý giá.
+> Trong thời gian thực tập tại First Cloud AI Journey (FCAJ), tôi đã tham gia các sự kiện sau, mỗi sự kiện đều đóng góp vào sự phát triển kỹ thuật, tư duy chuyên nghiệp và kết nối cộng đồng của bản thân.
 
-### [Event 1 — FCAJ Cohort Kickoff & AWS Orientation](4.1-Event1/)
+### [Event 1 — Event CD AWS](4.1-Event1/)
 
-&emsp;**Tên sự kiện:** First Cloud AI Journey — Cohort Kickoff & AWS Orientation
+&emsp;**Tên sự kiện:** Event CD AWS
 
-&emsp;**Thời gian:** 09:00, 17/04/2026
-
-&emsp;**Địa điểm:** Online (Zoom)
-
-&emsp;**Vai trò:** Tham gia (Intern)
-
-&emsp;Đây là sự kiện khai mạc chính thức của khóa thực tập FCAJ. Sự kiện giới thiệu cấu trúc chương trình, kỳ vọng, quy trình Agile và tổng quan phạm vi dự án `smart_media_analytics_cloudforge`. Các intern được giới thiệu với mentor và phân công module. Bài học quan trọng: hiểu roadmap 11 tuần từ nền tảng AWS đến deploy AI production.
-
----
-
-### [Event 2 — AWS Community Day Vietnam 2026](4.2-Event2/)
-
-&emsp;**Tên sự kiện:** AWS Community Day Vietnam 2026
-
-&emsp;**Thời gian:** 09:00, 20/06/2026
-
-&emsp;**Địa điểm:** Thành phố Hồ Chí Minh
+&emsp;**Đơn vị tổ chức:** First Cloud AI Journey (FCAJ)
 
 &emsp;**Vai trò:** Người tham dự
 
-&emsp;Sự kiện cộng đồng AWS quy mô lớn quy tụ các cloud practitioner, AWS engineer và sinh viên trên toàn Việt Nam. Các session tham dự bao gồm: **Generative AI trên AWS Bedrock**, **Serverless at Scale với Lambda & Step Functions**, và **Xây dựng Containers Production-Ready trên ECS Fargate**. Các session về Bedrock và ECS Fargate trực tiếp liên quan đến dự án thực tập và cung cấp insights thực tiễn được áp dụng trong Tuần 9–11. Cũng có cơ hội kết nối với AWS Solutions Architect và thảo luận về kiến trúc pgvector + RDS cho semantic search.
+&emsp;Sự kiện chia sẻ kiến thức với các diễn giả từ FCAJ, trải dài trên sáu chủ đề: nâng cao kỹ năng AWS với Cloud Quest và FLoCI, giá trị của hackathon như một môi trường học tập, xây dựng sự tự tin trong hành trình sinh viên và nghề nghiệp, showcase sản phẩm AI ứng dụng chiêm tinh học (Tử Vi Đại Việt), phòng ngừa rủi ro DevOps trong dự án phần mềm, và vượt qua sự trì hoãn. Sự kiện kết hợp hài hòa giữa kiến thức kỹ thuật và góc nhìn phát triển bản thân.
+
+---
+
+### [Event 2 — Cloud Architect](4.2-Event2/)
+
+&emsp;**Tên sự kiện:** Cloud Architect
+
+&emsp;**Đơn vị tổ chức:** First Cloud AI Journey (FCAJ)
+
+&emsp;**Vai trò:** Người tham gia
+
+&emsp;Sự kiện thi đấu theo đội tập trung vào điện toán đám mây và thiết kế kiến trúc. Tám đội cạnh tranh qua các câu hỏi từ khái niệm cloud cơ bản đến thiết kế kiến trúc nâng cao. Hình thức tăng dần độ khó kết hợp với các vòng tie-breaker nhịp độ nhanh tạo ra môi trường sôi động để củng cố kiến thức cloud, rèn luyện tư duy dưới áp lực và thực hành giải quyết vấn đề cộng tác.

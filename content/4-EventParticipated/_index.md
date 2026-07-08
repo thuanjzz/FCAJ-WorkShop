@@ -6,30 +6,26 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-> During the internship at First Cloud AI Journey (FCAJ), I participated in the following events that enriched my technical knowledge and professional network.
+> During the internship at First Cloud AI Journey (FCAJ), I participated in the following events, each contributing to my technical growth, professional mindset, and community engagement.
 
-### [Event 1 — FCAJ Cohort Kickoff & AWS Orientation](4.1-Event1/)
+### [Event 1 — Event CD AWS](4.1-Event1/)
 
-&emsp;**Event Name:** First Cloud AI Journey — Cohort Kickoff & AWS Orientation
+&emsp;**Event Name:** Event CD AWS
 
-&emsp;**Date & Time:** 09:00, 17/04/2026
-
-&emsp;**Location:** Online (Zoom)
-
-&emsp;**Role:** Participant (Intern)
-
-&emsp;This was the official kickoff event for the FCAJ internship cohort. The event introduced the program structure, expectations, the Agile workflow used throughout the internship, and an overview of the `smart_media_analytics_cloudforge` project scope. Interns were introduced to their mentors and assigned to their respective modules. Key takeaway: understanding the 11-week roadmap from AWS fundamentals to production AI deployment.
-
----
-
-### [Event 2 — AWS Community Day Vietnam 2026](4.2-Event2/)
-
-&emsp;**Event Name:** AWS Community Day Vietnam 2026
-
-&emsp;**Date & Time:** 09:00, 20/06/2026
-
-&emsp;**Location:** Ho Chi Minh City
+&emsp;**Organizer:** First Cloud AI Journey (FCAJ)
 
 &emsp;**Role:** Attendee
 
-&emsp;A large-scale AWS community event gathering cloud practitioners, AWS engineers, and students across Vietnam. Sessions attended included: **Generative AI on AWS Bedrock**, **Serverless at Scale with Lambda & Step Functions**, and **Building Production-Ready Containers on ECS Fargate**. The Bedrock and ECS Fargate sessions were directly relevant to the internship project and provided practical insights that were applied in Weeks 9–11 of the worklog. Also had the opportunity to network with AWS Solutions Architects and discuss the pgvector + RDS architecture for semantic search.
+&emsp;A knowledge-sharing event featuring FCAJ speakers across six topics: leveling up AWS skills with Cloud Quest and FLoCI, the value of hackathons as learning environments, building self-confidence as a student and professional, an AI-powered astrology product showcase (Tử Vi Đại Việt), DevOps risk prevention in software projects, and overcoming procrastination. The event offered a balanced mix of technical insights and personal development perspectives.
+
+---
+
+### [Event 2 — Cloud Architect](4.2-Event2/)
+
+&emsp;**Event Name:** Cloud Architect
+
+&emsp;**Organizer:** First Cloud AI Journey (FCAJ)
+
+&emsp;**Role:** Participant
+
+&emsp;A competitive, team-based quiz event centered on cloud computing and architecture design. Eight teams competed across questions ranging from foundational cloud concepts to advanced architecture scenarios. The progressive difficulty format, combined with fast-paced tie-breaker rounds, created an engaging environment for reinforcing cloud knowledge, sharpening reasoning under pressure, and practicing collaborative problem-solving.

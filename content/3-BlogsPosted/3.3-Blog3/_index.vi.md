@@ -26,9 +26,9 @@ Robot sẽ thu thập dữ liệu trực tiếp ngoài cánh đồng, bao gồm:
 *   Thông tin cảm biến
 *   Metadata của từng nhiệm vụ
 
-Sau đó dữ liệu được gửi lên **Amazon S3** thông qua **AWS IoT Core**.
+Sau đó dữ liệu được gửi lên Amazon S3 thông qua AWS IoT Core.
 
-Tiếp theo, **Amazon SageMaker AI** đảm nhiệm gần như toàn bộ pipeline Machine Learning:
+Tiếp theo, Amazon SageMaker AI đảm nhiệm gần như toàn bộ pipeline Machine Learning:
 
 *   Tiền xử lý dữ liệu.
 *   Tự động gán nhãn bằng các mô hình thị giác máy tính.
@@ -85,7 +85,7 @@ Theo AWS, sau khi chuyển sang Amazon SageMaker AI, Aigen ghi nhận một số
 *   Tăng 20 lần năng suất xử lý gán nhãn dữ liệu.
 *   Giảm khoảng 22,5 lần chi phí gán nhãn mỗi hình ảnh.
 *   Có thể thực hiện hàng trăm thí nghiệm huấn luyện mỗi tuần thay vì chỉ vài lần như trước.
-*   Rút ngắn thời gian đưa mô hình mới vào robot từ **vài tháng xuống chỉ còn vài tuần**.
+*   Rút ngắn thời gian đưa mô hình mới vào robot từ vài tháng xuống chỉ còn vài tuần.
 
 ### 6. Góc nhìn cá nhân
 

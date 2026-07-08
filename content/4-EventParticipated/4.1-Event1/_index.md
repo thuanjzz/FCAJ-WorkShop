@@ -1,56 +1,103 @@
 ---
-title: "Event 1"
+title: "Event 1 — Event CD AWS"
 date: 2026-04-17
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-# First Cloud AI Journey — Cohort Kickoff & AWS Orientation
+# Event Summary Report: "Event CD AWS"
 
-### 1. Purpose of the Event
+### 1. Event Objectives
 
-The **Cohort Kickoff & AWS Orientation** marked the official launch of the First Cloud AI Journey (FCAJ) internship program. The event aimed to:
-- Connect interns with corporate mentors and peer collaborators.
-- Set expectations regarding code quality, collaboration rules, and the Agile (Scrum) sprint lifecycle.
-- Provide a deep dive into the business goals and technical scope of the target project: **Smart Media Analytics CloudForge** (Video Semantic Search).
-- Guide interns through setting up their IAM credentials, AWS CLI configuration, and access to AWS Management Console.
+The **Event CD AWS** brought together speakers from the FCAJ community to share hands-on knowledge, real-world experiences, and practical insights with participants. The event was designed to:
 
----
-
-### 2. Speakers & Mentors
-
-- **Nguyen Gia Hung** — Senior Cloud Solutions Architect & Company Mentor (hunggia@amazon.com)
-- **FCAJ Admin Team** — Program coordinators and agile coaches.
+- Deliver industry-relevant knowledge and skills directly from practitioners in the field.
+- Build opportunities for networking, open discussion, and the exchange of ideas among attendees.
+- Offer valuable perspectives that support both academic growth and career development.
+- Inspire participants through real stories and lessons from actual projects.
 
 ---
 
-### 3. Key Highlights & Activities
+### 2. Speakers
 
-#### Agile & Scrum Setup
-- The team established a 2-week sprint cycle.
-- Introduced GitHub Issues Board for tracking task progression, PR reviews, and issue logging (e.g., configuring branch naming policies).
-- Clarified the definition of done (DoD) for pull requests: clean code, pass local linter, and successful Docker build.
-
-#### Project Scope Briefing
-- **The Mission:** Build an AI-powered Video Semantic Search engine.
-- **Role Alignment:** Pham Ninh Thuan was assigned ownership of the core **AI Pipeline module** (Scene detection, ASR transcription, Bedrock image captioning, and vector persistence).
-- **Architecture Draft:** Discussed the local (Docker) ↔ cloud (AWS App Runner, RDS pgvector, Bedrock, S3) mapping architecture.
-
-#### AWS Hands-On Orientation
-- Guided walk-through on creating IAM users with the least privilege principle.
-- Standardized AWS CLI setup: configuring Access Key, Secret Key, default region (`us-east-1`), and enforcing MFA for root accounts.
+- **Huỳnh Thái Linh** — FCAJ
+- **Huỳnh An Khương · Mai Quốc Anh · Nguyễn Trần Minh Quân** — FCAJ Challengers
+- **Nguyễn Thị Quỳnh Như** — FCAJ
+- **Trần Nghĩa** — FCAJ
+- **Trần Minh Quân** — FCAJ
+- **Phạm Khắc Uy** — FCAJ
 
 ---
 
-### 4. Key Learnings & Takeaways
+### 3. Key Highlights
 
-- **Ownership Mentality:** As the owner of the AI pipeline, I realized the need to document API contracts early so that the frontend and database tasks wouldn't be blocked.
-- **Least Privilege Principle:** Configured IAM policies with narrow permission scopes (denying wildcard `*` actions where possible) to prevent security slip-ups in cloud environments.
-- **Agile Discipline:** Mastered task estimation and learned to break complex architectural problems (like batch image processing) into smaller, trackable GitHub issues.
+#### Topic 1 — Leveling Up Your AWS Skills with Cloud Quest and FLoCI
+
+The session opened by addressing the gap many students face between cloud theory and hands-on implementation. Key points covered:
+
+- **AWS Cloud Quest** was introduced as an interactive, gamified learning platform where learners build AWS knowledge through real-world scenarios rather than passive study.
+- **FLoCI (open-source)** was presented as a collaborative cloud-learning initiative that encourages community engagement and practical contribution.
+- The session concluded with a learning path framework combining both platforms: using Cloud Quest for structured practice and FLoCI for community-driven, real-world exposure.
+
+#### Topic 2 — Hackathon: Lots of Fun, Bugs, and Learning
+
+An energetic session that reframed hackathons not just as competitions but as accelerated learning environments. Highlights included:
+
+- **Learning by building:** The chaos of a hackathon forces problem-solving under pressure.
+- **Portfolio value:** Projects built during hackathons serve as tangible proof of skills.
+- **Real-world exposure:** Teams handle unexpected bugs, scope changes, and time constraints — all skills that translate directly to professional environments.
+
+#### Topic 3 — Why Confidence Is a "Must-Have" for Career, Student Life, and Everything In Between
+
+A reflective session that explored the psychology behind confidence and its impact on student outcomes:
+
+1. Understanding what confidence actually is — and what it is not.
+2. The hidden cost of low self-confidence: missed opportunities, reduced academic performance, social withdrawal.
+3. The science behind mental blocks and where self-doubt originates.
+4. Why confidence is a skill that can be deliberately built, not just a trait you either have or don't.
+5. Practical daily micro-habits for building lasting confidence.
+
+#### Topic 4 — Tử Vi Đại Việt (AI-Powered Astrology Product)
+
+A product showcase featuring an AI-integrated astrology application:
+
+- Blends traditional Vietnamese astrology with modern AI to offer personalized destiny insights.
+- Powered by AI to surface constellation-based energy patterns and their influence on daily life.
+- Demonstrates an innovative application of Generative AI beyond conventional enterprise use cases.
+
+#### Topic 5 — The Iceberg of a Project: DevOps Before Disaster
+
+A frank discussion on the hidden complexity beneath every software project:
+
+- Identifying technical debt, pipeline gaps, and infrastructure risks that aren't visible on the surface.
+- The central role of DevOps practices in detecting and preventing failure before it escalates.
+- Building development workflows that are reliable, reproducible, and resilient.
+
+#### Topic 6 — The Iceberg of Procrastination
+
+The final session tackled procrastination with depth and honesty:
+
+- Explored the root psychological causes behind procrastination — not laziness, but often anxiety and perfectionism.
+- Examined how procrastination silently erodes academic results and professional output.
+- Introduced practical strategies to break the cycle and build sustainable productivity habits.
 
 ---
 
-### 5. Application to Project Work
+### 4. Lessons Learned
 
-Immediately after the event, I successfully initialized my AWS CLI environment, created the local Docker Compose configuration, and drafted the first OpenAPI Data Contract, setting a solid foundation for Sprint 1.
+Attending this event gave me a broader perspective and a set of practical takeaways I can apply immediately:
+
+- **Hands-on Cloud Skills:** Platforms like AWS Cloud Quest reinforce the value of learning by doing — something no amount of reading can fully replicate.
+- **Problem-Solving Mindset:** Hackathons are a compressed environment for developing real product-building instincts, teamwork under pressure, and debugging discipline.
+- **DevOps Awareness:** The "iceberg" framing made it clear that what you see in a project is never the whole picture — DevOps is the layer that keeps what's beneath the surface from sinking the ship.
+- **Personal Development:** Confidence and overcoming procrastination are not soft add-ons — they are core multipliers of technical performance and career trajectory.
+- **Applied AI:** Seeing AI used in a culturally rooted product like Tử Vi Đại Việt was a reminder that AI applications don't have to follow a template — creativity in use case matters.
+
+---
+
+### 5. Event Photos
+
+![Event CD AWS — Photo 1](/images/4-Event/event_1.jpg)
+
+![Event CD AWS — Photo 2](/images/4-Event/event_2.jpg)
