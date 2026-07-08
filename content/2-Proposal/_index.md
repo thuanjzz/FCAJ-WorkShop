@@ -7,11 +7,11 @@ pre: " <b> 2. </b> "
 ---
 
 # Smart Media Analytics
-## Building an AI-Powered Video Analysis and Search System (Video Semantic Search)
+## AI-Powered Video Analysis and Search System (Video Semantic Search)
 
 ### 1. Executive Summary
 
-Smart Media Analytics (SMA) is a local-first system that automatically ingests, splits scenes, transcribes, and semantically searches media. Users only need to type natural language queries (e.g., "sunset on the beach") to find the exact video timestamp, saving time compared to manual browsing. Initially, the system runs 100% locally via Docker to ensure security and optimize testing costs, and can then be easily upgraded to its corresponding AWS architecture (S3, Bedrock, OpenSearch, RDS) when needed.
+Smart Media Analytics (SMA) is a local-first platform developed to automate the workflow of media ingestion, scene segmenting, transcription, and semantic search. The system allows users to enter natural language queries (such as "sunset scene on the beach") to pinpoint the exact timestamp in the video, eliminating time-consuming manual browsing and playback. To optimize testing costs and data security, the system is designed to run in a self-contained Docker environment during the initial phase, with a clear upgrade path prepared for migration to AWS (S3, Bedrock, OpenSearch, RDS) to support production scaling.
 
 Project resources:
 - GitHub: https://github.com/ntnhan19/smart_media_analytics_cloudforge
@@ -21,19 +21,21 @@ Project resources:
 
 ### 2. Problem Statement
 
-Current problem: Distributed media libraries and meaningless filenames make finding specific footage manually extremely time-consuming. Processing everything via Cloud AI from the start is expensive and risks data leaks.
+Current challenge: Digital media libraries are often distributed and raw video files carry meaningless names, making manual searching for specific footage labor-intensive. In addition, migrating all data directly to Cloud AI platforms from the start causes high operational costs and presents potential information security risks.
 
-Solution: SMA solves this problem with an automatic, local-first media processing pipeline. The system uses a React dashboard for asset browsing, FastAPI to provide APIs, ChromaDB to store and query vector embeddings, PostgreSQL to store metadata, MinIO to store media objects, Ollama to run vision and embedding models locally, and faster-whisper to transcribe audio. When deployed on AWS, these components map to their respective production services: MinIO to Amazon S3, Ollama vision model to AWS Bedrock, faster-whisper to Amazon Transcribe, and PostgreSQL to Amazon RDS PostgreSQL. Additionally, the cloud system can utilize CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache, and VPC to complete its deployment and operations lifecycle.
+Proposed solution: SMA optimizes processing workflows using an automated pipeline running entirely in the local environment. The system integrates a React management dashboard, FastAPI to serve API endpoints, ChromaDB to manage vector embeddings, PostgreSQL for metadata storage, MinIO for static media object storage, Ollama to run vision and embedding models locally, and faster-whisper for speech-to-text processing. Upon cloud migration, these local services map to their cloud production counterparts on AWS: MinIO to Amazon S3, Ollama vision models to AWS Bedrock, faster-whisper to Amazon Transcribe, and PostgreSQL to Amazon RDS PostgreSQL. The entire cloud lifecycle is reinforced by management services such as CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache, and VPC.
 
-Benefits (ROI): The solution significantly reduces the time needed to search footage, read transcripts, and identify required scenes, thereby increasing the productivity of creative teams. Users can enter natural queries such as "sunset scene on the beach with wave sounds" and receive the exact video segment and timestamp, instead of manually watching the entire file.
+Delivered value: The system helps design and media production teams significantly reduce the time spent filtering raw footage, reviewing dialogs, and trimming videos. By typing natural commands like "sunset scene on the beach with wave sounds", users receive a ranked list of matched segments and direct timestamps, bypassing manual screening.
 
 ---
 
 ### 3. Solution Architecture
 
-SMA is designed as a hybrid local-to-cloud system to be convenient for local development while remaining easy to upgrade to a production environment later. During the local phase, the entire media ingestion workflow runs in Docker Compose: the system receives videos and images, automatically detects scenes, transcribes audio, generates content descriptions using AI, and stores the processed data in the local environment.
+The architecture of SMA employs a hybrid local-to-cloud model to maintain flexibility during local development while minimizing deployment risks during migration to high-scale cloud environments. In the local phase, the entire data ingestion and analysis pipeline is containerized using Docker Compose: performing video reception, scene detection, audio transcription, automated visual description via AI, and local data persistence.
 
-When deployed to AWS, the architecture can scale without major changes to the processing logic. S3 is used for media storage, Bedrock and Transcribe handle the AI tasks, RDS PostgreSQL stores metadata, CloudFront combined with S3 distributes the frontend interface, while services like Cognito, WAF, ECR, Lambda, ECS Fargate, App Runner, Step Functions, SQS, EventBridge, CloudWatch, X-Ray, ElastiCache, and VPC support security, orchestration, monitoring, and scaling.
+![System Architecture](/images/2-Proposal/platform_architecture.jpeg)
+
+Upon transitioning to AWS, the system scales smoothly without restructuring core processing logic. Amazon S3 takes over media storage, AWS Bedrock and Amazon Transcribe execute machine learning tasks, and RDS PostgreSQL manages metadata. Frontend distribution is optimized via CloudFront and S3, supported by Cognito, WAF, ECR, Lambda, ECS Fargate, App Runner, Step Functions, SQS, EventBridge, CloudWatch, X-Ray, ElastiCache, and VPC to provide security, workflow orchestration, and system observability.
 
 #### AWS Services Utilized in the Architecture
 
@@ -83,11 +85,11 @@ DevOps & Monitoring:
 
 ### 4. Technical Implementation
 
-The project is deployed across 4 phases:
-- Architecture Research: Design data flows matching the AWS service list.
-- Local-first Development: Complete the internal pipeline using Docker Compose.
-- Cloud-ready Standardization: Begin replacing containers with AWS services (App Runner, Bedrock, RDS).
-- AWS Deployment & Testing: Use CI/CD to build and push Docker images to ECR, configure CloudWatch and X-Ray monitoring.
+The project development workflow is structured across 4 sequential stages:
+- Mapping layout: Model data transfer flows compatible with AWS platform definitions.
+- Local setup: Establish and verify the internal pipeline via Docker Compose.
+- Cloud-ready transition: Progressively replace local Docker containers with corresponding AWS cloud services (e.g., App Runner, Bedrock, RDS).
+- AWS integration & testing: Set up CI/CD workflows to package and push Docker images to ECR, and configure logging and distributed tracing via CloudWatch and X-Ray.
 
 #### Key Technical Decisions
 - pgvector over ChromaDB: Eliminated a separate vector DB service; store 1024-dim vectors directly in PostgreSQL — simplifying infrastructure and enabling JOIN queries between metadata and vectors.
@@ -111,7 +113,7 @@ The project is deployed across 4 phases:
 
 ### 6. Cost Estimation (AWS Environment)
 
-With a complete production architecture utilizing over 20 AWS services as detailed above (including Multi-AZ and NAT Gateway running 24/7), the estimated baseline costs for a small/medium environment are:
+The production infrastructure is optimized on AWS with support services running 24/7. Below is the estimated baseline monthly cost for a small-to-medium deployment:
 
 | AWS Service | Usage Purpose | Estimated Monthly Cost (USD) |
 |---|---|---|

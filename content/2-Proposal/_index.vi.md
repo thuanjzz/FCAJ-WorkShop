@@ -7,11 +7,11 @@ pre: " <b> 2. </b> "
 ---
 
 # Smart Media Analytics
-## Xây dựng hệ thống phân tích và tìm kiếm video bằng AI (Video Semantic Search)
+## Hệ thống phân tích và truy vấn video thông minh (Video Semantic Search)
 
 ### 1. Tóm tắt điều hành
 
-Smart Media Analytics (SMA) là hệ thống local-first tự động nạp, tách cảnh, phiên âm và tìm kiếm ngữ nghĩa media. Người dùng chỉ cần gõ yêu cầu tự nhiên (ví dụ: "hoàng hôn trên biển") để tìm đúng timestamp video, tiết kiệm thời gian xem thủ công. Ban đầu, hệ thống chạy 100% nội bộ qua Docker giúp bảo mật và tối ưu chi phí thử nghiệm, sau đó có thể dễ dàng nâng cấp cấu trúc tương ứng lên AWS (S3, Bedrock, OpenSearch, RDS) khi cần.
+Smart Media Analytics (SMA) là một nền tảng cục bộ trước tiên (local-first) được phát triển nhằm tự động hóa quy trình nạp liệu, phân đoạn cảnh quay, chuyển đổi giọng nói và tìm kiếm ngữ nghĩa cho các tệp đa phương tiện. Hệ thống cho phép người sử dụng nhập các truy vấn bằng ngôn ngữ tự nhiên (ví dụ như "cảnh hoàng hôn bên bờ biển") để định vị chính xác mốc thời gian (timestamp) tương ứng trong video, loại bỏ việc phải tua và tìm kiếm thủ công tốn thời gian. Nhằm tối ưu hóa chi phí thử nghiệm và bảo mật dữ liệu, hệ thống được thiết kế chạy khép kín thông qua Docker ở giai đoạn đầu, đồng thời chuẩn bị sẵn lộ trình nâng cấp hạ tầng lên môi trường AWS (S3, Bedrock, OpenSearch, RDS) để đáp ứng quy mô sản xuất.
 
 Tài nguyên dự án:
 - GitHub: https://github.com/ntnhan19/smart_media_analytics_cloudforge
@@ -21,19 +21,21 @@ Tài nguyên dự án:
 
 ### 2. Tuyên bố vấn đề
 
-Vấn đề hiện tại: Thư viện media phân tán, tên file vô nghĩa khiến việc tìm cảnh quay thủ công tốn rất nhiều thời gian. Nếu xử lý toàn bộ qua AI Cloud ngay từ đầu sẽ tốn kém và có nguy cơ rò rỉ dữ liệu.
+Thách thức hiện nay: Các thư viện nội dung số thường bị phân tán, tên tệp không mang tính mô tả khiến việc tìm kiếm cảnh quay mong muốn trở nên thủ công và tốn kém nhân lực. Bên cạnh đó, việc chuyển toàn bộ dữ liệu lên các dịch vụ AI đám mây ngay từ đầu có thể gây ra chi phí lớn và tiềm ẩn nguy cơ mất an toàn thông tin.
 
-Giải pháp: SMA giải quyết bài toán này bằng một pipeline xử lý media tự động theo hướng local-first. Hệ thống sử dụng React dashboard để duyệt asset, FastAPI để cung cấp API, ChromaDB để lưu và truy vấn vector embedding, PostgreSQL để lưu metadata, MinIO để lưu object media, Ollama để chạy mô hình vision và embedding nội bộ, cùng faster-whisper để phiên âm âm thanh. Khi triển khai trên AWS, các thành phần này được ánh xạ sang kiến trúc production tương ứng: MinIO sang Amazon S3, Ollama vision model sang AWS Bedrock, faster-whisper sang Amazon Transcribe, và PostgreSQL sang Amazon RDS PostgreSQL. Bên cạnh đó, hệ thống cloud còn có thể dùng CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache và VPC để hoàn thiện vòng đời triển khai và vận hành.
+Phương án giải quyết: SMA tối ưu hóa quy trình xử lý thông qua một luồng công việc (pipeline) tự động chạy trực tiếp ở môi trường cục bộ. Hệ thống kết hợp giao diện quản lý React, FastAPI phục vụ các yêu cầu API, ChromaDB quản lý các vector embedding, PostgreSQL lưu trữ thông tin thuộc tính (metadata), MinIO lưu trữ tệp tin tĩnh, Ollama vận hành các mô hình thị giác máy tính và embedding nội bộ, cùng faster-whisper để xử lý chuyển đổi giọng nói. Khi nâng cấp lên AWS, các dịch vụ này sẽ được chuyển đổi sang hạ tầng đám mây tương ứng: MinIO sang Amazon S3, mô hình vision từ Ollama sang AWS Bedrock, faster-whisper sang Amazon Transcribe, và PostgreSQL sang Amazon RDS PostgreSQL. Toàn bộ chu trình vận hành đám mây sẽ được củng cố bằng các dịch vụ quản lý như CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache và VPC.
 
-Lợi ích (ROI): Giải pháp giúp rút ngắn đáng kể thời gian tìm kiếm footage, đọc transcript và xác định cảnh cần dùng, từ đó tăng hiệu quả làm việc cho nhóm sáng tạo. Người dùng có thể nhập truy vấn tự nhiên như "cảnh hoàng hôn trên biển có tiếng sóng" và nhận kết quả đúng đoạn video, đúng timestamp, thay vì phải xem thủ công toàn bộ file.
+Giá trị mang lại: Hệ thống giúp các nhóm thiết kế và sản xuất nội dung rút ngắn đáng kể thời gian sàng lọc dữ liệu thô, duyệt lời thoại và cắt ghép video. Bằng cách nhập câu lệnh tự nhiên như "cảnh hoàng hôn trên biển có tiếng sóng", người dùng sẽ nhận được danh sách kết quả chứa đúng phân đoạn video cần tìm thay vì phải duyệt toàn bộ tệp.
 
 ---
 
 ### 3. Kiến trúc giải pháp
 
-SMA được thiết kế theo hướng hybrid local-to-cloud để vừa thuận tiện khi phát triển nội bộ, vừa dễ nâng cấp lên môi trường production sau này. Ở giai đoạn local, toàn bộ quy trình ingest media chạy trong Docker Compose: hệ thống nhận video và ảnh, tự tách cảnh, phiên âm âm thanh, tạo mô tả nội dung bằng AI và lưu dữ liệu xử lý vào môi trường cục bộ.
+Kiến trúc của SMA áp dụng mô hình lai hybrid local-to-cloud nhằm duy trì tính linh hoạt trong quá trình lập trình nội bộ đồng thời giảm thiểu rủi ro khi chuyển đổi lên môi trường đám mây quy mô lớn. Ở mức độ cục bộ, toàn bộ chuỗi nạp và phân tích dữ liệu được đóng gói trong Docker Compose: thực hiện tiếp nhận video, phân tách cảnh, xử lý âm thanh, sinh mô tả nội dung tự động thông qua AI và lưu trữ dữ liệu cục bộ.
 
-Khi triển khai lên AWS, kiến trúc có thể mở rộng mà không cần thay đổi lớn về logic xử lý. S3 dùng để lưu media, Bedrock và Transcribe đảm nhiệm phần AI, RDS PostgreSQL lưu metadata, CloudFront kết hợp S3 phân phối giao diện frontend, còn các dịch vụ như Cognito, WAF, ECR, Lambda, ECS Fargate, App Runner, Step Functions, SQS, EventBridge, CloudWatch, X-Ray, ElastiCache và VPC hỗ trợ bảo mật, điều phối, giám sát và mở rộng hệ thống.
+![Kiến trúc hệ thống](/images/2-Proposal/platform_architecture.jpeg)
+
+Khi chuyển dịch lên AWS, hệ thống dễ dàng mở rộng quy mô xử lý mà không cần cấu trúc lại các logic cốt lõi. Amazon S3 tiếp quản lưu trữ media, AWS Bedrock và Amazon Transcribe xử lý các tác vụ học máy, RDS PostgreSQL quản lý metadata thuộc tính. Việc phân phối giao diện frontend được tối ưu hóa qua CloudFront và S3, cùng với sự hỗ trợ của Cognito, WAF, ECR, Lambda, ECS Fargate, App Runner, Step Functions, SQS, EventBridge, CloudWatch, X-Ray, ElastiCache và VPC để đảm bảo an ninh, điều phối luồng công việc và giám sát hệ thống.
 
 #### Danh sách dịch vụ AWS sử dụng trong kiến trúc
 
@@ -83,11 +85,11 @@ DevOps & Giám sát (Management & Governance):
 
 ### 4. Triển khai kỹ thuật
 
-Dự án triển khai qua 4 giai đoạn:
-- Nghiên cứu kiến trúc: Thiết kế luồng dữ liệu khớp với danh sách dịch vụ AWS.
-- Xây dựng bản Local-first: Hoàn thiện pipeline nội bộ với Docker Compose.
-- Chuẩn hóa Cloud-ready: Bắt đầu thay thế các container bằng AWS Services (App Runner, Bedrock, RDS).
-- Triển khai & Kiểm thử AWS: Sử dụng CI/CD để build Docker images đẩy lên ECR, cấu hình giám sát CloudWatch và X-Ray.
+Quy trình phát triển dự án được tổ chức chặt chẽ qua 4 giai đoạn nối tiếp:
+- Thiết lập sơ đồ: Mô hình hóa các luồng truyền nhận thông tin tương thích với đặc tả hệ thống AWS.
+- Phát triển bản local: Định hình và kiểm thử pipeline nội bộ thông qua Docker Compose.
+- Chuyển đổi cloud-ready: Thay thế dần các dịch vụ Docker local bằng các dịch vụ đám mây AWS tương ứng (như App Runner, Bedrock, RDS).
+- Kiểm thử tích hợp AWS: Thiết lập quy trình CI/CD đóng gói Docker image đẩy lên ECR, cấu hình hệ thống ghi log và giám sát phân tán với CloudWatch và X-Ray.
 
 #### Quyết định kỹ thuật chính
 - pgvector thay ChromaDB: Loại bỏ dịch vụ vector DB riêng; lưu vector 1024-dim trực tiếp trong PostgreSQL — đơn giản hóa hạ tầng và cho phép JOIN giữa metadata và vectors.
@@ -111,7 +113,7 @@ Dự án triển khai qua 4 giai đoạn:
 
 ### 6. Ước tính chi phí (Môi trường AWS)
 
-Với quy mô kiến trúc production hoàn chỉnh sử dụng hơn 20 dịch vụ AWS như trên (bao gồm Multi-AZ và NAT Gateway chạy 24/7), ước tính chi phí cơ bản cho một môi trường nhỏ/vừa như sau:
+Hạ tầng production được thiết kế tối ưu trên môi trường đám mây AWS với các dịch vụ bổ trợ chạy liên tục 24/7. Dưới đây là ước tính chi phí vận hành cơ bản đối với một hệ thống quy mô nhỏ và vừa:
 
 | Dịch vụ AWS | Mục đích sử dụng | Ước tính chi phí / Tháng (USD) |
 |---|---|---|
@@ -158,6 +160,6 @@ Với quy mô kiến trúc production hoàn chỉnh sử dụng hơn 20 dịch v
 
 ### 8. Kết quả kỳ vọng
 
-- Về mặt kỹ thuật: SMA cho phép người dùng nạp media, tự động tạo chỉ mục ngữ nghĩa, tìm kiếm bằng ngôn ngữ tự nhiên và nhảy trực tiếp tới đúng timestamp trong video.
-- Về mặt sản phẩm: Hệ thống phù hợp cho nhóm thiết kế, dựng phim, nghiên cứu nội dung hoặc phòng lab cần quản lý media nội bộ một cách an toàn và hiệu quả.
-- Về mặt mở rộng: Kiến trúc local-first giúp phát triển nhanh, còn mapping sang AWS giúp hệ thống có đường nâng cấp rõ ràng lên môi trường production khi cần.
+- Về mặt kỹ thuật: Hệ thống SMA mang đến khả năng nạp liệu và lập chỉ mục nội dung video tự động, cho phép định vị cảnh quay dựa trên ngôn ngữ tự nhiên.
+- Về mặt sản phẩm: Giải pháp hoàn thiện tối ưu cho các nhóm sản xuất media, dựng phim hoặc khối nghiên cứu cần lưu trữ và truy xuất tư liệu một cách tin cậy và bảo mật.
+- Về mặt mở rộng: Kiến trúc local-first giúp tối ưu tiến độ lập trình thử nghiệm, trong khi thiết kế AWS sẵn sàng hỗ trợ việc dịch chuyển hạ tầng lên production khi lưu lượng tăng cao.
