@@ -15,7 +15,7 @@ Smart Media Analytics (SMA) is a local-first platform developed to automate the 
 
 Project resources:
 - GitHub: https://github.com/ntnhan19/smart_media_analytics_cloudforge
-- Figma Design: https://www.figma.com/design/sCSnjyJ8bTRwSKocFe0nAR/Viualization-Of-SMA
+
 
 ---
 
@@ -33,7 +33,7 @@ Delivered value: The system helps design and media production teams significantl
 
 The architecture of SMA employs a hybrid local-to-cloud model to maintain flexibility during local development while minimizing deployment risks during migration to high-scale cloud environments. In the local phase, the entire data ingestion and analysis pipeline is containerized using Docker Compose: performing video reception, scene detection, audio transcription, automated visual description via AI, and local data persistence.
 
-![System Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![System Architecture](/images/2-Proposal/platform_architecture.png)
 
 Upon transitioning to AWS, the system scales smoothly without restructuring core processing logic. Amazon S3 takes over media storage, AWS Bedrock and Amazon Transcribe execute machine learning tasks, and RDS PostgreSQL manages metadata. Frontend distribution is optimized via CloudFront and S3, supported by Cognito, WAF, ECR, Lambda, ECS Fargate, App Runner, Step Functions, SQS, EventBridge, CloudWatch, X-Ray, ElastiCache, and VPC to provide security, workflow orchestration, and system observability.
 
