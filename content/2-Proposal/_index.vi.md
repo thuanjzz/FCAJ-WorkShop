@@ -11,7 +11,7 @@ pre: " <b> 2. </b> "
 
 ### 1. Tóm tắt điều hành
 
-Smart Media Analytics (SMA) là một nền tảng cục bộ trước tiên (local-first) được phát triển nhằm tự động hóa quy trình nạp liệu, phân đoạn cảnh quay, chuyển đổi giọng nói và tìm kiếm ngữ nghĩa cho các tệp đa phương tiện. Hệ thống cho phép người sử dụng nhập các truy vấn bằng ngôn ngữ tự nhiên (ví dụ như "cảnh hoàng hôn bên bờ biển") để định vị chính xác mốc thời gian (timestamp) tương ứng trong video, loại bỏ việc phải tua và tìm kiếm thủ công tốn thời gian. Nhằm tối ưu hóa chi phí thử nghiệm và bảo mật dữ liệu, hệ thống được thiết kế chạy khép kín thông qua Docker ở giai đoạn đầu, đồng thời chuẩn bị sẵn lộ trình nâng cấp hạ tầng lên môi trường AWS (S3, Bedrock, OpenSearch, RDS) để đáp ứng quy mô sản xuất.
+Smart Media Analytics (SMA) là nền tảng phân tích đa phương tiện theo mô hình local-first, được xây dựng để tự động hóa toàn bộ các bước từ tiếp nhận dữ liệu, nhận dạng cảnh quay, phiên âm nội dung âm thanh đến truy vấn ngữ nghĩa theo thời gian thực. Với SMA, người dùng chỉ cần mô tả nội dung cần tìm bằng câu chữ thông thường như "cảnh hoàng hôn bên bờ biển" để hệ thống trả về đúng đoạn video cùng mốc thời gian tương ứng, thay vì phải xem lại từng phút footage một cách thủ công. Hệ thống vận hành khép kín trong môi trường Docker ở giai đoạn thử nghiệm nhằm kiểm soát chi phí và bảo đảm an toàn dữ liệu, đồng thời được thiết kế sẵn sàng chuyển đổi lên hạ tầng AWS (S3, Bedrock, OpenSearch, RDS) khi có nhu cầu mở rộng quy mô.
 
 Tài nguyên dự án:
 - GitHub: https://github.com/ntnhan19/smart_media_analytics_cloudforge
@@ -19,13 +19,13 @@ Tài nguyên dự án:
 
 ---
 
-### 2. Tuyên bố vấn đề
+### 2. Vấn đề
 
-Thách thức hiện nay: Các thư viện nội dung số thường bị phân tán, tên tệp không mang tính mô tả khiến việc tìm kiếm cảnh quay mong muốn trở nên thủ công và tốn kém nhân lực. Bên cạnh đó, việc chuyển toàn bộ dữ liệu lên các dịch vụ AI đám mây ngay từ đầu có thể gây ra chi phí lớn và tiềm ẩn nguy cơ mất an toàn thông tin.
+Bối cảnh thực tế: Kho lưu trữ media ngày càng phình to trong khi cách đặt tên tệp rời rạc, thiếu tính mô tả đã khiến công việc tìm kiếm footage trở thành một bài toán tốn công. Mỗi lần cần truy hồi một cảnh quay cụ thể, nhóm sản xuất phải mở từng tệp, tua đi tua lại qua nhiều đoạn dài trước khi xác định được nội dung cần dùng. Đưa toàn bộ dữ liệu lên Cloud AI ngay từ đầu cũng không phải lựa chọn tối ưu vì vừa đội chi phí, vừa mang rủi ro lộ lọt thông tin nội bộ.
 
-Phương án giải quyết: SMA tối ưu hóa quy trình xử lý thông qua một luồng công việc (pipeline) tự động chạy trực tiếp ở môi trường cục bộ. Hệ thống kết hợp giao diện quản lý React, FastAPI phục vụ các yêu cầu API, ChromaDB quản lý các vector embedding, PostgreSQL lưu trữ thông tin thuộc tính (metadata), MinIO lưu trữ tệp tin tĩnh, Ollama vận hành các mô hình thị giác máy tính và embedding nội bộ, cùng faster-whisper để xử lý chuyển đổi giọng nói. Khi nâng cấp lên AWS, các dịch vụ này sẽ được chuyển đổi sang hạ tầng đám mây tương ứng: MinIO sang Amazon S3, mô hình vision từ Ollama sang AWS Bedrock, faster-whisper sang Amazon Transcribe, và PostgreSQL sang Amazon RDS PostgreSQL. Toàn bộ chu trình vận hành đám mây sẽ được củng cố bằng các dịch vụ quản lý như CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache và VPC.
+Cách tiếp cận của SMA: Hệ thống xây dựng một pipeline xử lý tự động hoàn toàn ở phạm vi nội bộ, kết hợp React dashboard cho phép quản lý asset trực quan, FastAPI đảm nhận cổng API, ChromaDB dùng để lập chỉ mục vector embedding, PostgreSQL lưu trữ dữ liệu thuộc tính, MinIO quản lý object media, Ollama chạy các mô hình nhận dạng hình ảnh và sinh embedding ngay trên máy cục bộ, cùng faster-whisper để chuyển giọng nói thành văn bản. Khi sẵn sàng lên mây, từng thành phần trong stack này sẽ được hoán đổi sang dịch vụ AWS tương ứng: MinIO → Amazon S3, mô hình Ollama → AWS Bedrock, faster-whisper → Amazon Transcribe, PostgreSQL → Amazon RDS. Hệ sinh thái đám mây còn được bổ sung thêm CloudFront, Cognito, WAF, ECR, CloudWatch, Secrets Manager, X-Ray, SQS, EventBridge, Step Functions, API Gateway, App Runner, ECS Fargate, Lambda, ElastiCache và VPC để hoàn thiện vòng đời vận hành.
 
-Giá trị mang lại: Hệ thống giúp các nhóm thiết kế và sản xuất nội dung rút ngắn đáng kể thời gian sàng lọc dữ liệu thô, duyệt lời thoại và cắt ghép video. Bằng cách nhập câu lệnh tự nhiên như "cảnh hoàng hôn trên biển có tiếng sóng", người dùng sẽ nhận được danh sách kết quả chứa đúng phân đoạn video cần tìm thay vì phải duyệt toàn bộ tệp.
+Hiệu quả thực tiễn: Thay vì lướt xem từng tệp, người dùng nhập một truy vấn bằng ngôn ngữ hằng ngày như "cảnh hoàng hôn trên biển có tiếng sóng" và nhận lại ngay danh sách các đoạn video khớp cùng timestamp chính xác. Điều này giúp các nhóm nội dung tiết kiệm đáng kể thời gian sàng lọc, đọc lời thoại và biên tập footage.
 
 ---
 
