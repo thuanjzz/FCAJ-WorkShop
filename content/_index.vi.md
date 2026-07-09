@@ -26,7 +26,7 @@ chapter: false
 
 &emsp; **Giảng viên hướng dẫn tại trường:** Kiều Hoàng Long — kh.long@hutech.edu.vn
 
-&emsp; **Thời gian thực tập:** Từ ngày 17/04/2026 đến ngày 05/07/2026 (11 tuần)
+&emsp; **Thời gian thực tập:** Từ ngày 17/04/2026 đến ngày 17/07/2026 (12 tuần)
 
 ![Ảnh đại diện](/images/avatar.png)
 

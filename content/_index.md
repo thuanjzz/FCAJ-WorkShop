@@ -26,7 +26,7 @@ chapter: false
 
 &emsp; **Supervisor (University):** Kieu Hoang Long — kh.long@hutech.edu.vn
 
-&emsp; **Internship Duration:** From 17/04/2026 to 05/07/2026 (11 weeks)
+&emsp; **Internship Duration:** From 17/04/2026 to 17/07/2026 (12 weeks)
 
 ![Profile picture](/images/avatar.png)
 
