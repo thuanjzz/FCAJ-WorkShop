@@ -98,6 +98,4 @@ Tham gia sự kiện này mang lại cho tôi nhiều góc nhìn mới mẻ và 
 
 ### 5. Một Số Hình Ảnh Sự Kiện
 
-![Event CD AWS — Hình 1](/images/4-Event/event_1.jpg)
-
-![Event CD AWS — Hình 2](/images/4-Event/event_2.jpg)
+![Event CD AWS](/images/4-Event/evnt_1.png)

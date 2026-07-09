@@ -98,6 +98,4 @@ Attending this event gave me a broader perspective and a set of practical takeaw
 
 ### 5. Event Photos
 
-![Event CD AWS — Photo 1](/images/4-Event/event_1.jpg)
-
-![Event CD AWS — Photo 2](/images/4-Event/event_2.jpg)
+![Event CD AWS](/images/4-Event/evnt_1.png)
