@@ -18,9 +18,9 @@ chapter: false
 
 &emsp; **University:** Ho Chi Minh City University of Technology (HUTECH)
 
-&emsp; **Internship Company:** Bootcamp First Cloud AI Journey (FCAJ)
+&emsp; **Internship Company:** Amazon Web Services Vietnam Llc
 
-&emsp; **Internship Position:** AI Engineer Intern — Video Semantic Search
+&emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
 &emsp; **Supervisor (Company):** Nguyen Gia Hung — hunggia@amazon.com
 

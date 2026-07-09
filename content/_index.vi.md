@@ -18,9 +18,9 @@ chapter: false
 
 &emsp; **Trường:** Đại học Công nghệ TP.HCM (HUTECH)
 
-&emsp; **Đơn vị thực tập:** Bootcamp First Cloud AI Journey (FCAJ)
+&emsp; **Đơn vị thực tập:** Công ty TNHH Amazon Web Services Việt Nam
 
-&emsp; **Vị trí thực tập:** AI Engineer Intern — Video Semantic Search
+&emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
 
 &emsp; **Cán bộ hướng dẫn tại công ty:** Nguyễn Gia Hưng — hunggia@amazon.com
 
