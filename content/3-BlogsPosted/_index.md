@@ -19,3 +19,7 @@ This blog post shares a serverless, AI-driven architecture for digitizing unstru
 ### [Blog 3 — How AI and Robots Are Transforming Sustainable Agriculture with Amazon SageMaker AI](3.3-Blog3/)
 
 This blog post explores how Aigen, an autonomous agricultural robotics company, modernized its AI pipeline using Amazon SageMaker AI. It covers the cloud-native architecture for continuous model training, active learning to reduce labeling costs, real-world use cases such as weed detection and adaptive model improvement, and the measurable results achieved — including a 20x increase in labeling throughput and a 22.5x reduction in per-image labeling costs.
+
+### [Blog 4 — Deep Dive into AWS Bedrock & Vector Embedding – How Raw Text Becomes AI "Coordinates"](3.4-Blog4/)
+
+This blog post demystifies the Embedding process at the heart of RAG (Retrieval-Augmented Generation) systems. Written from a Backend developer’s perspective, it walks through the full Chunking → Bedrock Embedding → Vector Search pipeline, explains why Amazon Bedrock is preferred over self-hosted models, and shares hard-won lessons on rate limiting, chunking strategy, and cost management when building AI search features on AWS.

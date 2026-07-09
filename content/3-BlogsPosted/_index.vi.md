@@ -19,3 +19,7 @@ Bài viết chia sẻ một kiến trúc serverless kết hợp AI giúp tự đ
 ### [Blog 3 — AI và Robot đang thay đổi nông nghiệp bền vững như thế nào với Amazon SageMaker AI?](3.3-Blog3/)
 
 Bài viết khám phá cách Aigen — công ty phát triển robot nông nghiệp tự hành — hiện đại hóa toàn bộ pipeline AI bằng Amazon SageMaker AI. Bài viết trình bày kiến trúc cloud-native với vòng lặp học liên tục, kỹ thuật Active Learning giúp giảm chi phí gán nhãn, các use case thực tế như nhận diện cỏ dại và cải thiện mô hình liên tục, cùng các kết quả cụ thể — bao gồm tăng 20 lần năng suất gán nhãn và giảm 22,5 lần chi phí gán nhãn mỗi hình ảnh.
+
+### [Blog 4 — Deep Dive vào AWS Bedrock & Vector Embedding – Cái gì biến văn bản thô thành "Tọa độ" cho AI?](3.4-Blog4/)
+
+Bài viết giải mã quá trình Embedding — nền tảng của mọi hệ thống RAG (Retrieval-Augmented Generation). Viết từ góc nhìn của một Backend Developer, bài viết dẫn dắt toàn bộ pipeline Chunking → Bedrock Embedding → Vector Search, giải thích lý do chọn Amazon Bedrock thay vì tự host model, và chia sẻ các bài học thực tế về rate limiting, chiến lược chunking và quản lý chi phí khi xây dựng tính năng tìm kiếm AI trên AWS.
