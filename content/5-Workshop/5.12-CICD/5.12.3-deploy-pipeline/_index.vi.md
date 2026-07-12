@@ -1,19 +1,19 @@
 ﻿---
-title : "Triá»ƒn khai liÃªn tá»¥c lÃªn ECS"
+title : "Triển khai liên tục lên ECS"
 date : 2026-07-10
 weight : 3
 chapter : false
 pre : " <b> 5.12.3. </b> "
 ---
 
-Sau khi Docker Image má»›i Ä‘Æ°á»£c Ä‘Ã³ng gÃ³i vÃ  Ä‘áº©y thÃ nh cÃ´ng lÃªn Amazon ECR á»Ÿ bÃ i 5.12.2, bÆ°á»›c cuá»‘i cÃ¹ng cá»§a quy trÃ¬nh CI/CD lÃ  tá»± Ä‘á»™ng cáº­p nháº­t há»‡ thá»‘ng mÃ¡y chá»§ Amazon ECS Ä‘á»ƒ cháº¡y phiÃªn báº£n mÃ£ nguá»“n má»›i nháº¥t.
+Sau khi Docker Image mới được đóng gói và đẩy thành công lên Amazon ECR ở bài 5.12.2, bước cuối cùng của quy trình CI/CD là tự động cập nhật hệ thống máy chủ Amazon ECS để chạy phiên bản mã nguồn mới nhất.
 
-Äá»ƒ Ä‘áº£m báº£o há»‡ thá»‘ng khÃ´ng bá»‹ giÃ¡n Ä‘oáº¡n (Zero-downtime) trong quÃ¡ trÃ¬nh cáº­p nháº­t, nhÃ³m dá»± Ã¡n thiáº¿t káº¿ luá»“ng triá»ƒn khai dá»±a trÃªn cÆ¡ cháº¿ **Rolling Update** máº·c Ä‘á»‹nh cá»§a Amazon ECS Fargate.
+Để đảm bảo hệ thống không bị gián đoạn (Zero-downtime) trong quá trình cập nhật, nhóm dự án thiết kế luồng triển khai dựa trên cơ chế **Rolling Update** mặc định của Amazon ECS Fargate.
 
-#### BÆ°á»›c 1: Cáº­p nháº­t luá»“ng Workflow trÃªn GitHub Actions
-Má»Ÿ láº¡i tá»‡p `.github/workflows/deploy.yml` Ä‘Ã£ táº¡o á»Ÿ bÃ i trÆ°á»›c trÃªn VS Code vÃ  bá»• sung thÃªm cÃ¡c bÆ°á»›c (Steps) táº£i cáº¥u hÃ¬nh Task Definition hiá»‡n táº¡i, cáº­p nháº­t Image ID má»›i, vÃ  ra lá»‡nh triá»ƒn khai trá»±c tiáº¿p lÃªn ECS Cluster.
+#### Bước 1: Cập nhật luồng Workflow trên GitHub Actions
+Mở lại tệp `.github/workflows/deploy.yml` đã tạo ở bài trước trên VS Code và bổ sung thêm các bước (Steps) tải cấu hình Task Definition hiện tại, cập nhật Image ID mới, và ra lệnh triển khai trực tiếp lên ECS Cluster.
 
-Ná»™i dung tá»‡p `deploy.yml` hoÃ n chá»‰nh sau khi tÃ­ch há»£p luá»“ng CD:
+Nội dung tệp `deploy.yml` hoàn chỉnh sau khi tích hợp luồng CD:
 
 ```yaml
 name: Deploy Backend to ECR and ECS
@@ -80,28 +80,28 @@ jobs:
           wait-for-service-stability: true
 ```
 
-**Giáº£i thÃ­ch luá»“ng triá»ƒn khai bá»• sung:**
-- **Download task definition:** Sá»­ dá»¥ng AWS CLI (Ä‘Ã£ Ä‘Æ°á»£c xÃ¡c thá»±c qua OIDC ngáº¯n háº¡n) Ä‘á»ƒ táº£i xuá»‘ng cáº¥u hÃ¬nh Task Definition Ä‘ang hoáº¡t Ä‘á»™ng (Active) dÆ°á»›i dáº¡ng tá»‡p `task-definition.json`, giÃºp Pipeline luÃ´n Ä‘á»“ng bá»™ vá»›i cáº¥u hÃ¬nh thá»±c táº¿ trÃªn háº¡ táº§ng.
-- **render-task-definition:** TÃ¬m kiáº¿m container cÃ³ tÃªn `cloudforge-backend-container` bÃªn trong tá»‡p Ä‘á»‹nh nghÄ©a JSON vá»«a táº£i vÃ  thay tháº¿ trÆ°á»ng `image` báº±ng Ä‘Æ°á»ng dáº«n URI cá»§a Docker Image chá»©a mÃ£ SHA commit vá»«a Ä‘Æ°á»£c Ä‘áº©y lÃªn ECR.
-- **deploy-task-definition:** ÄÄƒng kÃ½ má»™t phiÃªn báº£n má»›i (New Revision) cá»§a Task Definition lÃªn AWS vÃ  cáº­p nháº­t ECS Service Ä‘á»ƒ kÃ­ch hoáº¡t tiáº¿n trÃ¬nh Rolling Update. Tham sá»‘ `wait-for-service-stability: true` buá»™c GitHub Actions giá»¯ káº¿t ná»‘i chá» cho Ä‘áº¿n khi cÃ¡c container má»›i vÆ°á»£t qua Health Check á»•n Ä‘á»‹nh thÃ¬ má»›i Ä‘Ã³ng phiÃªn cháº¡y thÃ nh cÃ´ng.
+**Giải thích luồng triển khai bổ sung:**
+- **Download task definition:** Sử dụng AWS CLI (đã được xác thực qua OIDC ngắn hạn) để tải xuống cấu hình Task Definition đang hoạt động (Active) dưới dạng tệp `task-definition.json`, giúp Pipeline luôn đồng bộ với cấu hình thực tế trên hạ tầng.
+- **render-task-definition:** Tìm kiếm container có tên `cloudforge-backend-container` bên trong tệp định nghĩa JSON vừa tải và thay thế trường `image` bằng đường dẫn URI của Docker Image chứa mã SHA commit vừa được đẩy lên ECR.
+- **deploy-task-definition:** Đăng ký một phiên bản mới (New Revision) của Task Definition lên AWS và cập nhật ECS Service để kích hoạt tiến trình Rolling Update. Tham số `wait-for-service-stability: true` buộc GitHub Actions giữ kết nối chờ cho đến khi các container mới vượt qua Health Check ổn định thì mới đóng phiên chạy thành công.
 
-#### BÆ°á»›c 2: Quan sÃ¡t tiáº¿n trÃ¬nh Rolling Update
-LÆ°u láº¡i tá»‡p cáº¥u hÃ¬nh trÃªn mÃ¡y cá»¥c bá»™, thá»±c hiá»‡n commit vÃ  `git push` lÃªn nhÃ¡nh `main`.
+#### Bước 2: Quan sát tiến trình Rolling Update
+Lưu lại tệp cấu hình trên máy cục bộ, thực hiện commit và `git push` lên nhánh `main`.
 
-1. **TrÃªn GitHub Actions:** Theo dÃµi tiáº¿n trÃ¬nh CI/CD. Giai Ä‘oáº¡n *Deploy Amazon ECS task definition* sáº½ duy trÃ¬ tráº¡ng thÃ¡i cháº¡y khoáº£ng 3 Ä‘áº¿n 5 phÃºt Ä‘á»ƒ Ä‘á»£i ECS container khá»Ÿi táº¡o xong.
-2. **TrÃªn AWS ECS Console:** Chuyá»ƒn sang giao diá»‡n quáº£n lÃ½ cá»¥m mÃ¡y chá»§, truy cáº­p vÃ o dá»‹ch vá»¥ `cloudforge-backend-service` vÃ  chá»n tháº» **Deployments**.
+1. **Trên GitHub Actions:** Theo dõi tiến trình CI/CD. Giai đoạn *Deploy Amazon ECS task definition* sẽ duy trì trạng thái chạy khoảng 3 đến 5 phút để đợi ECS container khởi tạo xong.
+2. **Trên AWS ECS Console:** Chuyển sang giao diện quản lý cụm máy chủ, truy cập vào dịch vụ `cloudforge-backend-service` và chọn thẻ **Deployments**.
 
-Táº¡i Ä‘Ã¢y, cÆ¡ cháº¿ Rolling Update sáº½ diá»…n ra má»™t cÃ¡ch tá»± Ä‘á»™ng vÃ  trá»±c quan:
-- ECS tá»± Ä‘á»™ng tÃ­nh toÃ¡n vÃ  khá»Ÿi táº¡o (Provision) cÃ¡c tÃ¡c vá»¥ Task má»›i song song vá»›i cÃ¡c Task cÅ© dá»±a trÃªn Image má»›i Ä‘Æ°á»£c chá»‰ Ä‘á»‹nh.
-- CÃ¡c Task má»›i tá»± Ä‘á»™ng Ä‘Äƒng kÃ½ vÃ o Target Group cá»§a Application Load Balancer (ALB) vÃ  thá»±c hiá»‡n quÃ¡ trÃ¬nh kiá»ƒm tra sá»©c khá»e Ä‘áº§u vÃ o.
-- Khi cÃ¡c Task má»›i Ä‘áº¡t tráº¡ng thÃ¡i RUNNING vÃ  HEALTHY, ECS sáº½ tá»« tá»« Ä‘iá»u hÆ°á»›ng toÃ n bá»™ lÆ°u lÆ°á»£ng ngÆ°á»i dÃ¹ng sang phiÃªn báº£n má»›i, Ä‘á»“ng thá»i rÃºt vÃ  há»§y (Deregister) cÃ¡c Task cÅ©, Ä‘áº£m báº£o há»‡ thá»‘ng duy trÃ¬ hoáº¡t Ä‘á»™ng liÃªn tá»¥c 100% khÃ´ng xuáº¥t hiá»‡n lá»—i giÃ¡n Ä‘oáº¡n.
+Tại đây, cơ chế Rolling Update sẽ diễn ra một cách tự động và trực quan:
+- ECS tự động tính toán và khởi tạo (Provision) các tác vụ Task mới song song với các Task cũ dựa trên Image mới được chỉ định.
+- Các Task mới tự động đăng ký vào Target Group của Application Load Balancer (ALB) và thực hiện quá trình kiểm tra sức khỏe đầu vào.
+- Khi các Task mới đạt trạng thái RUNNING và HEALTHY, ECS sẽ từ từ điều hướng toàn bộ lưu lượng người dùng sang phiên bản mới, đồng thời rút và hủy (Deregister) các Task cũ, đảm bảo hệ thống duy trì hoạt động liên tục 100% không xuất hiện lỗi gián đoạn.
 
 ![ECS Rolling Update](/images/5-Workshop/5.12-CICD/5.12.3-deploy-pipeline/5.12.3-ecs-deploy.png)
 
 ***
 
-**Tá»•ng káº¿t ChÆ°Æ¡ng 5.12:** NhÃ³m dá»± Ã¡n Ä‘Ã£ thiáº¿t láº­p thÃ nh cÃ´ng má»™t quy trÃ¬nh CI/CD Pipeline Ä‘áº¡t tiÃªu chuáº©n báº£o máº­t Enterprise. Ká»ƒ tá»« nay, báº¥t ká»³ thay Ä‘á»•i nÃ o trÃªn mÃ£ nguá»“n Backend cÅ©ng sáº½ tá»± Ä‘á»™ng Ä‘i qua luá»“ng khÃ©p kÃ­n: **XÃ¡c thá»±c OIDC báº£o máº­t -> Tá»± Ä‘á»™ng Ä‘Ã³ng gÃ³i vÃ  Ä‘áº©y Image -> Triá»ƒn khai Rolling Update khÃ´ng giÃ¡n Ä‘oáº¡n dá»‹ch vá»¥**. VÃ²ng Ä‘á»i phÃ¡t triá»ƒn pháº§n má»m (SDLC) Ä‘Ã£ Ä‘Æ°á»£c tá»‘i Æ°u hÃ³a tá»± Ä‘á»™ng hÃ³a hoÃ n toÃ n.
+**Tổng kết Chương 5.12:** Nhóm dự án đã thiết lập thành công một quy trình CI/CD Pipeline đạt tiêu chuẩn bảo mật Enterprise. Kể từ nay, bất kỳ thay đổi nào trên mã nguồn Backend cũng sẽ tự động đi qua luồng khép kín: **Xác thực OIDC bảo mật -> Tự động đóng gói và đẩy Image -> Triển khai Rolling Update không gián đoạn dịch vụ**. Vòng đời phát triển phần mềm (SDLC) đã được tối ưu hóa tự động hóa hoàn toàn.
 
-**BÆ°á»›c tiáº¿p theo:** Há»‡ thá»‘ng Ä‘Ã£ tá»± váº­n hÃ nh hoÃ n háº£o, nhÆ°ng lÃ m sao Ä‘á»ƒ quáº£n trá»‹ viÃªn theo dÃµi Ä‘Æ°á»£c sá»©c khá»e há»‡ thá»‘ng vÃ  truy váº¿t lá»—i náº¿u cÃ³ sá»± cá»‘ xáº£y ra? á»ž chÆ°Æ¡ng cuá»‘i cÃ¹ng (**ChÆ°Æ¡ng 5.13: Observability**), chÃºng ta sáº½ khÃ¡m phÃ¡ cÃ¡ch giÃ¡m sÃ¡t toÃ n diá»‡n á»©ng dá»¥ng vá»›i AWS CloudWatch vÃ  AWS X-Ray.
+**Bước tiếp theo:** Hệ thống đã tự vận hành hoàn hảo, nhưng làm sao để quản trị viên theo dõi được sức khỏe hệ thống và truy vết lỗi nếu có sự cố xảy ra? Ở chương cuối cùng (**Chương 5.13: Observability**), chúng ta sẽ khám phá cách giám sát toàn diện ứng dụng với AWS CloudWatch và AWS X-Ray.
 
 
