@@ -1,33 +1,34 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-07-09
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Triển khai Kiến trúc Smart Media Analytics trên AWS
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+**Smart Media Analytics** (phát triển bởi nhóm **CloudForge**) là một hệ thống phân tích media thông minh End-to-End. Để đưa một hệ thống đồ sộ như thế này lên Cloud, chúng ta cần một hạ tầng mạng linh hoạt, bảo mật cao và tự động mở rộng bằng cách kết hợp các dịch vụ Serverless và Container của AWS.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+Trong bài thực hành này, bạn sẽ học cách triển khai toàn bộ nền tảng Smart Media Analytics lên AWS. Chúng ta sẽ bắt đầu bằng việc thiết kế mạng VPC bảo mật, sau đó triển khai cụm pipeline xử lý AI (AI Pipeline) trên **Amazon ECS (Fargate)**, thiết lập cơ sở dữ liệu vector với **RDS PostgreSQL**, và cuối cùng là khởi chạy giao diện người dùng thông qua **AWS App Runner**.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+Điểm nhấn của workshop này là các mô hình bảo mật như việc đặt toàn bộ Compute ở **Private Subnet** và truy cập Amazon S3 hoàn toàn thông qua mạng nội bộ nhờ vào **S3 Gateway Endpoint**.
 
 #### Nội dung
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Tổng quan Kiến trúc](5.1-Architecture-overview/)
+2. [Chuẩn bị & Phân quyền IAM](5.2-Prerequisites/)
+3. [Nền móng Mạng nội bộ (VPC)](5.3-Network-vpc/)
+4. [Lưu trữ & Dữ liệu (S3, RDS, Redis)](5.4-Database-setup/)
+5. [Bảo mật (Cognito, Secrets Manager, WAF)](5.5-Security-setup/)
+6. [Điều phối Workflow (SQS, EventBridge, Step Functions)](5.6-Ingestion-workflow/)
+7. [Tính toán (ECS Backend & AI Worker)](5.7-Compute-setup/)
+8. [Tích hợp AI/ML (Bedrock & Transcribe)](5.8-AI-ML-integration/)
+9. [API & Real-time (API Gateway, ALB, WebSocket)](5.9-API-and-realtime/)
+10. [Tìm kiếm Ngữ nghĩa (Semantic Search)](5.10-Semantic-search/)
+11. [Triển khai Frontend (Amplify, Route53)](5.11-Frontend-deployment/)
+12. [CI/CD (GitHub Actions, ECR)](5.12-CICD/)
+13. [Giám sát Hệ thống (CloudWatch, X-Ray)](5.13-Observability/)
+14. [Dọn dẹp tài nguyên](5.14-Cleanup/)
