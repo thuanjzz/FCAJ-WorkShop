@@ -1,101 +1,86 @@
----
-title: "Event 1 — Event CD AWS"
-date: 2026-04-17
+﻿---
+title: "Event 2"
+date: 2026-05-23
 weight: 1
 chapter: false
-pre: " <b> 4.1. </b> "
+pre: " <b> 4.2. </b> "
 ---
 
-# Event Summary Report: "Event CD AWS"
+# Summary Report: AWS Vietnam Community Day & First Cloud Journey 2026
 
-### 1. Event Objectives
+### Event Objectives
+- Share in-depth knowledge on applying Generative AI (GenAI), fine-tuning, and building Multi-Agent systems.
+- Provide methods to optimize the AI user experience through Context building and Memory integration.
+- Guide the construction of a secure, cost-optimized, and highly performant cloud platform architecture using Amazon CloudFront.
+- Inspire attendees through real-world product development journeys in Hackathon competitions.
 
-The **Event CD AWS** brought together speakers from the FCAJ community to share hands-on knowledge, real-world experiences, and practical insights with participants. The event was designed to:
+### Speakers
+- **Tinh Truong** â€“ Platform Engineer, GoTymeX
+- **Anh Pham** â€“ Cloud Consultant, G-AsiaPacific Vietnam & AWS Community Builder
+- **Thuan Nguyen** â€“ DevOps Engineer, First Cloud AI Journey
+- **Thao Nguyen & Mai Nguyen & Uyen Le** - GenAI Engineer, VIB
+- **Duc Dao** â€“ Solution Architect, Cloud Kinetics
+- **Vy Lam** â€“ Senior Business Systems Analyst, VPBank
 
-- Deliver industry-relevant knowledge and skills directly from practitioners in the field.
-- Build opportunities for networking, open discussion, and the exchange of ideas among attendees.
-- Offer valuable perspectives that support both academic growth and career development.
-- Inspire participants through real stories and lessons from actual projects.
+### Key Highlights
 
----
+#### 1. Context Is Everything: Making AI Actually Work for You (Tinh Truong)
+![Session 1](/images/4-Event/event_1/session1.jpg)
+- **Common Mistakes:** AI giving poor answers is often due to weak input (context) rather than the model itself. Cramming too much garbage information (Internet Puller) reduces accuracy and wastes tokens.
+- **Context Building Formula:** A good context needs 4 essential elements: Goal, Relevant info, Constraints, and Success criteria.
+- **The Evolution of AI:** How we interact with AI is shifting from simply using Prompts -> Building Context -> Forming Memory (A second AI brain) to support long-term personalization.
 
-### 2. Speakers
+#### 2. Friendly AI Assistant with Amazon Q (Anh Pham)
+![Session 2](/images/4-Event/event_1/session2.jpg)
+- **Q Chat Agent:** AI assistants for exploring data, analyzing insights, and automating PM tasks like summarizing meeting minutes, sending emails, and scheduling.
+- **Q Flows:** Create intelligent workflows with natural language â€” no coding required.
+- **Q Spaces & Sight:** Shared collaborative spaces that turn individual insights into team knowledge, and build dashboards/reports from raw data using natural language.
 
-- **Huỳnh Thái Linh** — FCAJ
-- **Huỳnh An Khương · Mai Quốc Anh · Nguyễn Trần Minh Quân** — FCAJ Challengers
-- **Nguyễn Thị Quỳnh Như** — FCAJ
-- **Trần Nghĩa** — FCAJ
-- **Trần Minh Quân** — FCAJ
-- **Phạm Khắc Uy** — FCAJ
+#### 3. From Edge To Origin: CloudFront as Your Foundation (Thuan Nguyen)
+![Session 3](/images/4-Event/event_1/session3.jpg)
+- **Cost and Security Issues:** The pay-as-you-go model can sometimes result in unexpected CDN bills. Routing and protection packages are needed to mitigate financial risks.
+- **Origin Cloaking:** Utilizing Origin Access Control (OAC) to lock direct access to S3 and Lambda ensures that traffic must route through CloudFront.
+- **High Availability:** CloudFront supports Failover configuration when the primary origin fails, maintaining an uninterrupted user experience and boosting speed with HTTP Compression (reducing load times by up to 81%).
 
----
+#### 4. 36 hrs with LotusHacks â€“ Building UTMorpho from Idea to Reality (Thao Nguyen & Mai Nguyen & Uyen Le)
+![Session 4](/images/4-Event/event_1/session4.jpg)
+- **From Zero to Idea:** The brainstorming journey of defining the problem and shaping UTMorpho.
+- **Building Under Pressure:** A 36-hour development sprint facing challenges, failures, and turning points.
+- **Key Learnings:** The best ideas stem from real-world frustrations. In teamwork, synchronization is paramount, and one must avoid "scope creep" (overloading features).
 
-### 3. Key Highlights
+#### 5. Non-Determinism of "Deterministic" LLM Settings (Duc Dao)
+- **The Reality of Temperature = 0:** Theoretically, Temp=0 should yield deterministic results (100% identical outputs). In reality, however, no LLM guarantees consistency across all tasks.
+- **Technical Causes:** GPU architectures perform floating-point operations that lack associativity, and API providers often batch user requests to optimize costs, leading to minor errors that alter the final output.
+- **Mitigation Strategies:** Build systems with an "accept variability" mindset using majority voting (running multiple times and picking the most common result), enforcing output types (JSON, YAML), and using temp=0.1 to prevent the model from getting stuck in repetitive loops.
 
-#### Topic 1 — Leveling Up Your AWS Skills with Cloud Quest and FLoCI
+#### 6. Enterprise-Grade Multi-Agent System: The Case of Startup Credit Scoring (Vy Lam)
+![Session 6](/images/4-Event/event_1/session6.jpg)
+- **Limitations of a Single Agent:** Using a single AI Agent for credit approvals often encounters context limits, diluted expertise, a lack of cross-checking, and becoming a single point of failure.
+- **The Power of Multi-Agent:** An architecture simulating a virtual credit committee comprised of specialized Agents (Financial Analysis, Market, Team, Risk, and Compliance) helps make more accurate decisions.
+- **Enterprise-Grade Mindset:** To transition from POC to Production, the system must be equipped with Guardrails (input/output protection), security (MFA, encryption), Data Governance (handling PII), and compliance with frameworks like SOC 2 and GDPR.
 
-The session opened by addressing the gap many students face between cloud theory and hands-on implementation. Key points covered:
+### Key Takeaways
 
-- **AWS Cloud Quest** was introduced as an interactive, gamified learning platform where learners build AWS knowledge through real-world scenarios rather than passive study.
-- **FLoCI (open-source)** was presented as a collaborative cloud-learning initiative that encourages community engagement and practical contribution.
-- The session concluded with a learning path framework combining both platforms: using Cloud Quest for structured practice and FLoCI for community-driven, real-world exposure.
+#### On AI Mindset & App Development
+- **Quality over Quantity:** Provide high-quality Context for AI instead of a pile of garbage data.
+- **Multi-Agent Mechanisms:** Complex enterprise problems should be broken down and cross-processed by multiple AI Agents instead of relying on a single agent.
+- **Understanding Technology Basics:** Do not blindly trust the deterministic setting (temperature=0) of LLMs for high-risk applications.
 
-#### Topic 2 — Hackathon: Lots of Fun, Bugs, and Learning
+#### Technical Architecture
+- Secure the system from the network edge to the origin server using CloudFront and Guardrails.
+- Transition from manual processes to integrating AI Agents and "Second Brain" systems with memory retrieval capabilities.
 
-An energetic session that reframed hackathons not just as competitions but as accelerated learning environments. Highlights included:
+### Applying to Work
+- **Optimize internal LLM systems:** Shift mindset when writing Prompts, utilize the 4-step framework (Goal, Info, Constraints, Criteria), and experiment with temp=0.1 if repetitive responses occur.
+- **Experiment with Multi-Agent Architectures:** Build automated evaluation workflows instead of using one long, single prompt.
+- **CDN Security:** Re-evaluate access permissions (bucket policies) on AWS S3, and implement OAC instead of the legacy OAI to enhance static content security.
 
-- **Learning by building:** The chaos of a hackathon forces problem-solving under pressure.
-- **Portfolio value:** Projects built during hackathons serve as tangible proof of skills.
-- **Real-world exposure:** Teams handle unexpected bugs, scope changes, and time constraints — all skills that translate directly to professional environments.
+### Event Experience
+Attending the AWS Vietnam Community Day 2026 provided me with an incredibly realistic perspective on the challenges of deploying AI in an Enterprise environment. From deep technical issues like GPU floating-point errors skewing LLMs, to designing a multi-layered security architecture with Multi-Agent and CloudFront.
 
-#### Topic 3 — Why Confidence Is a "Must-Have" for Career, Student Life, and Everything In Between
+The event didn't just impart technical knowledge but also reminded me of product-thinking: Always start from a real "pain point", maintain focus, and establish guardrails before scaling. The biggest highlight was realizing that the boundary between "knowing how to use AI" and "making AI work effectively" lies entirely in our ability to provide and manage Context.
 
-A reflective session that explored the psychology behind confidence and its impact on student outcomes:
+### Event Photos
 
-1. Understanding what confidence actually is — and what it is not.
-2. The hidden cost of low self-confidence: missed opportunities, reduced academic performance, social withdrawal.
-3. The science behind mental blocks and where self-doubt originates.
-4. Why confidence is a skill that can be deliberately built, not just a trait you either have or don't.
-5. Practical daily micro-habits for building lasting confidence.
+![Event Photo 1](/images/4-Event/event_1/event_23_05(1).jpg)
 
-#### Topic 4 — Tử Vi Đại Việt (AI-Powered Astrology Product)
-
-A product showcase featuring an AI-integrated astrology application:
-
-- Blends traditional Vietnamese astrology with modern AI to offer personalized destiny insights.
-- Powered by AI to surface constellation-based energy patterns and their influence on daily life.
-- Demonstrates an innovative application of Generative AI beyond conventional enterprise use cases.
-
-#### Topic 5 — The Iceberg of a Project: DevOps Before Disaster
-
-A frank discussion on the hidden complexity beneath every software project:
-
-- Identifying technical debt, pipeline gaps, and infrastructure risks that aren't visible on the surface.
-- The central role of DevOps practices in detecting and preventing failure before it escalates.
-- Building development workflows that are reliable, reproducible, and resilient.
-
-#### Topic 6 — The Iceberg of Procrastination
-
-The final session tackled procrastination with depth and honesty:
-
-- Explored the root psychological causes behind procrastination — not laziness, but often anxiety and perfectionism.
-- Examined how procrastination silently erodes academic results and professional output.
-- Introduced practical strategies to break the cycle and build sustainable productivity habits.
-
----
-
-### 4. Lessons Learned
-
-Attending this event gave me a broader perspective and a set of practical takeaways I can apply immediately:
-
-- **Hands-on Cloud Skills:** Platforms like AWS Cloud Quest reinforce the value of learning by doing — something no amount of reading can fully replicate.
-- **Problem-Solving Mindset:** Hackathons are a compressed environment for developing real product-building instincts, teamwork under pressure, and debugging discipline.
-- **DevOps Awareness:** The "iceberg" framing made it clear that what you see in a project is never the whole picture — DevOps is the layer that keeps what's beneath the surface from sinking the ship.
-- **Personal Development:** Confidence and overcoming procrastination are not soft add-ons — they are core multipliers of technical performance and career trajectory.
-- **Applied AI:** Seeing AI used in a culturally rooted product like Tử Vi Đại Việt was a reminder that AI applications don't have to follow a template — creativity in use case matters.
-
----
-
-### 5. Event Photos
-
-![Event CD AWS](/images/4-Event/evnt_1.png)
