@@ -1,9 +1,9 @@
 ﻿---
-title: "Event 2"
+title: "Event 1 - Community Day"
 date: 2026-05-23
 weight: 1
 chapter: false
-pre: " <b> 4.2. </b> "
+pre: " <b> 4.1. </b> "
 ---
 
 # Summary Report: AWS Vietnam Community Day & First Cloud Journey 2026
@@ -15,12 +15,12 @@ pre: " <b> 4.2. </b> "
 - Inspire attendees through real-world product development journeys in Hackathon competitions.
 
 ### Speakers
-- **Tinh Truong** â€“ Platform Engineer, GoTymeX
-- **Anh Pham** â€“ Cloud Consultant, G-AsiaPacific Vietnam & AWS Community Builder
-- **Thuan Nguyen** â€“ DevOps Engineer, First Cloud AI Journey
+- **Tinh Truong** – Platform Engineer, GoTymeX
+- **Anh Pham** – Cloud Consultant, G-AsiaPacific Vietnam & AWS Community Builder
+- **Thuan Nguyen** – DevOps Engineer, First Cloud AI Journey
 - **Thao Nguyen & Mai Nguyen & Uyen Le** - GenAI Engineer, VIB
-- **Duc Dao** â€“ Solution Architect, Cloud Kinetics
-- **Vy Lam** â€“ Senior Business Systems Analyst, VPBank
+- **Duc Dao** – Solution Architect, Cloud Kinetics
+- **Vy Lam** – Senior Business Systems Analyst, VPBank
 
 ### Key Highlights
 
@@ -33,7 +33,7 @@ pre: " <b> 4.2. </b> "
 #### 2. Friendly AI Assistant with Amazon Q (Anh Pham)
 ![Session 2](/images/4-Event/event_1/session2.jpg)
 - **Q Chat Agent:** AI assistants for exploring data, analyzing insights, and automating PM tasks like summarizing meeting minutes, sending emails, and scheduling.
-- **Q Flows:** Create intelligent workflows with natural language â€” no coding required.
+- **Q Flows:** Create intelligent workflows with natural language — no coding required.
 - **Q Spaces & Sight:** Shared collaborative spaces that turn individual insights into team knowledge, and build dashboards/reports from raw data using natural language.
 
 #### 3. From Edge To Origin: CloudFront as Your Foundation (Thuan Nguyen)
@@ -42,7 +42,7 @@ pre: " <b> 4.2. </b> "
 - **Origin Cloaking:** Utilizing Origin Access Control (OAC) to lock direct access to S3 and Lambda ensures that traffic must route through CloudFront.
 - **High Availability:** CloudFront supports Failover configuration when the primary origin fails, maintaining an uninterrupted user experience and boosting speed with HTTP Compression (reducing load times by up to 81%).
 
-#### 4. 36 hrs with LotusHacks â€“ Building UTMorpho from Idea to Reality (Thao Nguyen & Mai Nguyen & Uyen Le)
+#### 4. 36 hrs with LotusHacks – Building UTMorpho from Idea to Reality (Thao Nguyen & Mai Nguyen & Uyen Le)
 ![Session 4](/images/4-Event/event_1/session4.jpg)
 - **From Zero to Idea:** The brainstorming journey of defining the problem and shaping UTMorpho.
 - **Building Under Pressure:** A 36-hour development sprint facing challenges, failures, and turning points.
