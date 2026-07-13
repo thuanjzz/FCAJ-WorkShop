@@ -8,7 +8,7 @@ pre: " <b> 1. </b> "
 
 **Trang này** ghi lại nhật ký công việc hàng tuần trong quá trình thực tập tại First Cloud AI Journey (FCAJ), kéo dài **11 tuần** từ **17/04/2026 đến 05/07/2026**.
 
-4 tuần đầu tập trung học kiến thức nền tảng AWS, từ tuần 5–11 tập trung xây dựng hệ thống **Smart Media Analytics CloudForge** — Video Semantic Search sử dụng AI và dịch vụ cloud AWS.
+4 tuần đầu tập trung học kiến thức nền tảng AWS, từ tuần 5–11 tập trung xây dựng hệ thống **Smart Media Analytics CloudForge** — Video Semantic Search sử dụng AI và dịch vụ cloud AWS. Tuần 12 hoàn thiện triển khai toàn bộ hạ tầng AWS lên môi trường production.
 
 **Tuần 1:** [AWS Onboarding — Console, EC2, IAM](1.1-Week1/)
 
@@ -32,4 +32,4 @@ pre: " <b> 1. </b> "
 
 **Tuần 11:** [Hoàn thiện & Triển khai AWS Fargate](1.11-Week11/)
 
-**Tuần 12:** [—](1.12-Week12/)
+**Tuần 12:** [Triển khai Production trên AWS — CI/CD, Observability, Workshop](1.12-Week12/)
