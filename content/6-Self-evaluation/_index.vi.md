@@ -38,16 +38,16 @@ Qua quá trình thực hiện, tôi tự đánh giá bản thân theo các tiêu
 | 4 | Tinh thần trách nhiệm | Tốt | Tôi hoàn thành đầy đủ các nhiệm vụ của module AI Pipeline đúng thời hạn, đảm bảo mã nguồn hoạt động ổn định và có tài liệu hướng dẫn rõ ràng. |
 | 5 | Kỷ luật trong công việc | Khá | Tuân thủ quy trình làm việc nhóm, quy ước đặt tên và nhánh Git. Tuy nhiên cần cải thiện khả năng quản lý thời gian để tối ưu hiệu năng làm việc. |
 | 6 | Khả năng giao tiếp và trình bày | Tốt | Trình bày báo cáo rõ ràng, kết hợp sơ đồ kiến trúc trực quan giúp các thành viên khác dễ dàng tiếp cận và phối hợp dự án. |
-| 7 | Khả năng làm việc nhóm / trao đổi | Khá | Phối hợp tốt với team frontend để định nghĩa các API contract, tuy nhiên cần chủ động giao tiếp văn bản (async communication) nhiều hơn trên GitHub Issues. |
+| 7 | Khả năng làm việc nhóm / trao đổi | tốt | Phối hợp tốt với team frontend để định nghĩa các API contract, tuy nhiên cần chủ động giao tiếp văn bản (async communication) nhiều hơn trên GitHub Issues. |
 | 8 | Tư duy giải quyết vấn đề | Tốt | Áp dụng tư duy phân tích hệ thống để chia nhỏ pipeline xử lý thành các tác vụ độc lập, giúp việc debug và tối ưu hóa hệ thống hiệu quả hơn. |
-| 9 | Khả năng sử dụng công cụ | Tốt | Sử dụng thành thạo AWS Console/CLI, Docker, Git, Hugo và Markdown để hỗ trợ đắc lực cho công việc thiết kế và lập tài liệu. |
+| 9 | Khả năng sử dụng công cụ | Khá | Học hỏi và sử dụng được các công cụ AWS Console/CLI, Docker, Git, Hugo và Markdown để hỗ trợ đắc lực cho công việc thiết kế và lập tài liệu. |
 | 10 | Đóng góp vào dự án cá nhân | Tốt | Xây dựng hoàn chỉnh tính năng cốt lõi (AI pipeline và Semantic Search) cho sản phẩm Smart Media Analytics của nhóm. |
 | 11 | Khả năng tự đánh giá và cải thiện | Tốt | Thường xuyên rà soát lại kiến trúc hệ thống, chủ động tiếp nhận feedback từ Admin FCAJ để tối ưu mã nguồn và hoàn thiện tài liệu báo cáo. |
-| 12 | Đánh giá tổng thể | Tốt | Hoàn thành xuất sắc mục tiêu thực tập, nắm vững quy trình phát triển và vận hành một ứng dụng AI/ML thực tế trên nền tảng điện toán đám mây. |
+| 12 | Đánh giá tổng thể | Tốt | Hoàn thành mục tiêu thực tập, nắm được quy trình phát triển và vận hành một ứng dụng AI/ML thực tế trên nền tảng điện toán đám mây. |
 
 ### Điểm mạnh đạt được
-* Hiểu sâu sắc quy trình phát triển, tích hợp và triển khai hệ thống AI/ML trên hạ tầng cloud AWS.
-* Thành thạo trong việc phối hợp các dịch vụ Serverless (Lambda, Step Functions, SQS, API Gateway) và Container (ECS Fargate) để xử lý tác vụ nặng.
+* Hiểu về quy trình phát triển, tích hợp và triển khai hệ thống AI/ML trên hạ tầng cloud AWS.
+* Hiểu và phối hợp các dịch vụ Serverless (Lambda, Step Functions, SQS, API Gateway) và Container (ECS Fargate) để xử lý tác vụ nặng.
 * Làm chủ việc tích hợp Generative AI qua Amazon Bedrock (Nova Lite, Titan Embeddings) và tìm kiếm ngữ nghĩa với pgvector trên RDS PostgreSQL.
 * Xây dựng được luồng cập nhật thời gian thực (Real-time updates) sử dụng Redis Pub/Sub và WebSocket.
 * Có kinh nghiệm thực tế về tự động hóa CI/CD bằng GitHub Actions và giám sát hệ thống với AWS CloudWatch, X-Ray.
@@ -65,6 +65,6 @@ Qua quá trình thực hiện, tôi tự đánh giá bản thân theo các tiêu
 * Nâng cao trình độ tiếng Anh chuyên ngành công nghệ thông tin phục vụ cho việc nghiên cứu tài liệu kỹ thuật quốc tế.
 
 ### Kết luận tự đánh giá
-Qua kỳ thực tập tại FCAJ với dự án Smart Media Analytics, tôi đã có cơ hội quý báu để chuyển hóa kiến thức lý thuyết về AI và Cloud thành một sản phẩm thực tế có tính ứng dụng cao. Dự án giúp tôi củng cố vững chắc kỹ năng Cloud Engineering và AI Engineering, đồng thời rèn luyện phong cách làm việc chuyên nghiệp trong môi trường dự án.
+Qua kỳ thực tập tại FCAJ với dự án Smart Media Analytics, tôi đã có cơ hội để chuyển hóa kiến thức lý thuyết về AI và Cloud thành một sản phẩm thực tế có tính ứng dụng cao. Dự án giúp tôi củng cố vững chắc kỹ năng Cloud Engineering và AI Engineering, đồng thời rèn luyện phong cách làm việc chuyên nghiệp trong môi trường dự án.
 
-Tôi tự đánh giá kết quả thực tập đạt mức **Tốt** và tự tin rằng những kinh nghiệm thực tế này sẽ là bệ phóng vững chắc cho sự nghiệp của tôi trong lĩnh vực Cloud và AI/ML Ops trong tương lai.
+Tôi tự đánh giá kết quả thực tập đạt mức **Tốt** và tin rằng những kinh nghiệm thực tế này sẽ là nền tảng cho sự nghiệp của tôi trong lĩnh vực Cloud và AI/ML Ops trong tương lai.
