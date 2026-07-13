@@ -14,6 +14,8 @@ chapter: false
 
 &emsp; **Class:** 22DKHA1
 
+&emsp; **Project Team:** CloudForge
+
 &emsp; **Major:** Information Technology — Data Science
 
 &emsp; **University:** Ho Chi Minh City University of Technology (HUTECH)

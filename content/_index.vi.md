@@ -14,6 +14,8 @@ chapter: false
 
 &emsp; **Lớp:** 22DKHA1
 
+&emsp; **Nhóm thực hiện:** CloudForge
+
 &emsp; **Ngành:** Công nghệ Thông tin — Khoa Học Dữ Liệu
 
 &emsp; **Trường:** Đại học Công nghệ TP.HCM (HUTECH)
