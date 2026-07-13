@@ -83,17 +83,7 @@ Thông qua quá trình thực hành, tôi hiểu rõ hơn về cấu trúc thư 
 
 Một lỗi tôi từng gặp là sử dụng sai định dạng đường dẫn hình ảnh trong Markdown hoặc viết sai tên thư mục do phân biệt chữ hoa chữ thường (ví dụ: `5.13-observability` thay vì `5.13-Observability`). Sau khi khắc phục, tôi hiểu rõ hơn cách Hugo xử lý các tài nguyên tĩnh khi xây dựng website.
 
-#### 5.3. Lựa chọn hình ảnh minh họa
-Một khó khăn khác là lựa chọn hình ảnh phù hợp cho từng bước triển khai. Nếu sử dụng quá nhiều hình ảnh, báo cáo sẽ trở nên dài và khó theo dõi; ngược lại, nếu thiếu hình ảnh ở những bước quan trọng thì người đọc sẽ khó hình dung quá trình thực hiện.
 
-Vì vậy, tôi chỉ bổ sung hình ảnh tại những bước có giá trị minh chứng cao như:
-* Sơ đồ kiến trúc nền tảng.
-* Giao diện thiết lập Cognito, Amplify, và Route 53.
-* Cấu hình ECS Task Role & IAM policies.
-* Cấu trúc sidecar container xray-daemon và cài đặt cổng UDP 2000.
-* Kết quả hiển thị Service Map trên AWS X-Ray Console.
-* Log streams trên CloudWatch Logs.
-* Quá trình dọn dẹp tài nguyên sau khi triển khai.
 
 ### 6. Một số đề xuất
 Từ trải nghiệm của bản thân, tôi có một số đề xuất nhằm nâng cao chất lượng chương trình:
