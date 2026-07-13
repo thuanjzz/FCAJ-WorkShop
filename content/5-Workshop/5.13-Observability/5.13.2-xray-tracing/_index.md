@@ -1,4 +1,4 @@
-﻿---
+---
 title : "Integrate X-Ray Tracing"
 date : 2026-07-10
 weight : 2
@@ -21,6 +21,8 @@ For the containers within the ECS Task to legitimately transmit trace data back 
 4. Search for and check the **`AWSXRayDaemonWriteAccess`** policy.
 5. Click **Add permissions**.
 
+![IAM Task Role](/images/5-Workshop/5.13-Observability/5.13.2-xray-tracing/iam_task_role.png)
+
 #### Step 2: Incorporate the X-Ray Daemon Sidecar into Task Definition
 On the ECS Fargate environment, the industry-standard methodology for running X-Ray is the **Sidecar** pattern: Executing a secondary container (Daemon) concurrently with the primary container (Backend) within the same Task. This Daemon will listen for, harvest Trace data packets from the application, and propel them to AWS via the UDP protocol.
 
@@ -42,6 +44,12 @@ Access the **Amazon ECS Console** -> **Task Definitions**, opt to create a new r
 ```
 
 *Note: Opening UDP port 2000 is mandatory to permit the Backend container to communicate internally with the X-Ray Daemon Container.*
+
+![X-Ray Container Setup](/images/5-Workshop/5.13-Observability/5.13.2-xray-tracing/xray_container_setup.png)
+
+![X-Ray Port Resource](/images/5-Workshop/5.13-Observability/5.13.2-xray-tracing/xray_port_resource.png)
+
+![X-Ray Log Collection](/images/5-Workshop/5.13-Observability/5.13.2-xray-tracing/xray_log_collection.png)
 
 #### Step 3: Integrate X-Ray SDK into Application Source Code (FastAPI)
 Once the infrastructure is primed to receive data, the concluding step is to declare the library within the Backend source code (Python/FastAPI) to enable the system to autonomously generate Trace packets for every Request.
@@ -80,7 +88,7 @@ Navigate to the **AWS X-Ray Console** -> **Service map**. You will observe an in
 
 Transition to the **Traces** tab; administrators can click on individual Requests to scrutinize a Gantt chart analyzing the precise execution duration of each sub-task measured in milliseconds. This facilitates effortless isolation of sluggish SQL queries or processing logic consuming excessive CPU.
 
-![AWS X-Ray Service Map](/images/5-Workshop/5.13-observability/5.13.2-xray-service-map.png)
+![AWS X-Ray Service Map](/images/5-Workshop/5.13-Observability/5.13.2-xray-tracing/5.13.2-xray-service-map.png)
 *(Screenshot Guide: Capture the Service Map screen on the AWS Console displaying the visual communication nodes from Client -> Backend -> Database).*
 
 ***

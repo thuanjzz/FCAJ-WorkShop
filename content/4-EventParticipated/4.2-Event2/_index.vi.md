@@ -1,5 +1,5 @@
 ---
-title: "Event 2 — Cloud Architect"
+title: "Event 2 - Cloud Architect"
 date: 2026-06-20
 weight: 2
 chapter: false

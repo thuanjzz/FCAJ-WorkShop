@@ -1,4 +1,4 @@
-﻿---
+---
 title : "Thiết lập Amazon CloudWatch"
 date : 2026-07-10
 weight : 1
@@ -21,9 +21,6 @@ Nhóm dự án tạo một Log Group chuyên biệt để phân loại và gom t
    - **Retention setting:** Chọn **14 days** (Thời gian lưu giữ log 2 tuần nhằm tối ưu hóa chi phí lưu trữ trên AWS, tránh để mặc định `Never expire` gây lãng phí ngân sách dự án).
 5. Bấm **Create** để hoàn tất.
 
-![Create Log Group](/images/5-Workshop/5.13-Observability/5.13.1-cloudwatch-setup/5.13.1-create-log-group.png)
-*(Hướng dẫn chụp: Chụp lại màn hình danh sách Log groups hiển thị rõ bản ghi /ecs/cloudforge-backend với cột Retention tương ứng là 14 days).*
-
 #### Bước 2: Cập nhật ECS Task Definition sử dụng awslogs driver
 Để hệ thống máy chủ ECS biết được cần đẩy log về đâu, cấu hình log driver phải được tích hợp chặt chẽ bên trong bản thiết kế tác vụ (Task Definition).
 
@@ -42,7 +39,7 @@ Khối cấu hình `logConfiguration` được khai báo cụ thể trong địn
 
 Sau khi ứng dụng được cập nhật thông qua luồng CI/CD, mã nguồn Backend chạy trong container sẽ tự động chuyển hướng toàn bộ dữ liệu log ra ngoài. Khi truy cập vào Log Group `/ecs/cloudforge-backend`, quản trị viên có thể mở các **Log streams** để theo dõi toàn bộ tiến trình khởi chạy ứng dụng theo thời gian thực (Real-time).
 
-![CloudWatch Log Stream](/images/5-Workshop/5.13-observability/5.13.1-log-stream.png)
+![CloudWatch Log Stream](/images/5-Workshop/5.13-Observability/5.13.1-cloudwatch-setup/5.13.1-log-stream.png)
 *(Hướng dẫn chụp: Click chọn vào Log group /ecs/cloudforge-backend, chọn một log stream mới nhất và chụp lại màn hình hiển thị các dòng log chạy của ứng dụng như khởi chạy server, kết nối Database).*
 
 #### Bước 3: Thiết lập CloudWatch Alarm cảnh báo CPU
