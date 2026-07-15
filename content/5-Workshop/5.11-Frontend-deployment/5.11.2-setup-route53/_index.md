@@ -44,5 +44,3 @@ Once the status shifts to **Available**, the Frontend application is officially 
 ***
 
 **Next Step:** Both Backend and Frontend systems are now identified and secured with SSL. In the final step within lesson 5.11.3, the project team will configure environment variables on the Frontend to connect directly with the API Gateway and the Amazon Cognito authentication system.
-
-

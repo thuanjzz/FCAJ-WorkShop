@@ -8,7 +8,7 @@ pre : " <b> 5.4. </b> "
 
 ### Tổng quan Hệ thống Dữ liệu Cốt lõi
 
-Trong chương này, chúng ta sẽ tiến hành xây dựng nền tảng dữ liệu vững chắc và bảo mật cho ứng dụng Smart Media Analytics. Để tuân thủ nghiêm ngặt kiến trúc bảo mật **Zero-Trust**, toàn bộ các dịch vụ cơ sở dữ liệu sẽ được triển khai hoàn toàn bên trong vùng mạng nội bộ (**Private Subnets**) và được bảo vệ bởi các lớp tường lửa chuyên biệt.
+Trong chương này, tiến hành tiến hành xây dựng nền tảng dữ liệu vững chắc và bảo mật cho ứng dụng Smart Media Analytics. Để tuân thủ nghiêm ngặt kiến trúc bảo mật **Zero-Trust**, toàn bộ các dịch vụ cơ sở dữ liệu sẽ được triển khai hoàn toàn bên trong vùng mạng nội bộ (**Private Subnets**) và được bảo vệ bởi các lớp tường lửa chuyên biệt.
 
 Các thành phần cốt lõi được thiết lập bao gồm:
 1. **Amazon S3:** Lưu trữ đối tượng (Object Storage) không giới hạn, là nơi tiếp nhận và bảo quản toàn bộ các tệp tin video/audio gốc.
@@ -24,3 +24,4 @@ Kết thúc chương này, hệ thống dữ liệu không chỉ được kiểm
 - [Kích hoạt pgvector](5.4.3-enable-pgvector/)
 - [Khởi tạo ElastiCache (Redis)](5.4.4-create-elasticache-redis/)
 - [Kiểm tra Kết nối & Tổng hợp Endpoint](5.4.5-test-connection/)
+- [Khởi tạo Database Schema (Auto-Migration)](5.4.6-auto-migration/)

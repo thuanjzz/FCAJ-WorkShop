@@ -6,7 +6,7 @@ chapter : false
 pre : " <b> 5.7.1. </b> "
 ---
 
-Trước khi tiến hành cấu hình chi tiết cho các tác vụ xử lý (Task Definitions), chúng ta cần chuẩn bị không gian lưu trữ mã nguồn đóng gói và thiết lập nhóm quản lý logic tài nguyên. Phân đoạn này sẽ tập trung vào việc cấu hình kho lưu trữ **Amazon ECR** và khởi tạo cụm **Amazon ECS Cluster**.
+Trước khi tiến hành cấu hình chi tiết cho các tác vụ xử lý (Task Definitions), cần chuẩn bị không gian lưu trữ mã nguồn đóng gói và thiết lập nhóm quản lý logic tài nguyên. Phân đoạn này sẽ tập trung vào việc cấu hình kho lưu trữ **Amazon ECR** và khởi tạo cụm **Amazon ECS Cluster**.
 
 Do dự án áp dụng công nghệ **AWS Fargate**, cụm Cluster này sẽ hoạt động như một thực thể logic trống lúc ban đầu. Tài nguyên Compute thực tế sẽ chỉ được AWS cấp phát động ngay tại thời điểm ứng dụng được kích hoạt.
 
@@ -45,4 +45,4 @@ Sau khi hoàn tất, ghi nhận lại chuỗi đường dẫn **URI** của cả
 
 ***
 
-**Bước tiếp theo:** Hạ tầng quản lý và kho lưu trữ hình ảnh Docker đã sẵn sàng. Hãy chuyển sang bài học **5.7.2: Triển khai ECS Backend** để tiến hành tìm hiểu phương thức thiết lập bộ cân bằng tải Application Load Balancer (ALB) kết nối với mã nguồn API ứng dụng.
+**Bước tiếp theo:** Hạ tầng quản lý và kho lưu trữ hình ảnh Docker đã sẵn sàng. Hãy chuyển sang bài học [**5.7.2: Triển khai ECS Backend**](../5.7.2-deploy-ecs-backend/) để tiến hành tìm hiểu phương thức thiết lập bộ cân bằng tải Application Load Balancer (ALB) kết nối với mã nguồn API ứng dụng.

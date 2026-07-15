@@ -22,20 +22,26 @@ To definitively solve this problem according to enterprise standards, we will us
   | Key | Value |
   | :--- | :--- |
   | `DB_PASSWORD` | *<Enter your actual RDS PostgreSQL password>* |
-  | `COGNITO_USER_POOL_ID` | *<Enter the User Pool ID obtained in section 5.5.1>* |
-  | `COGNITO_APP_CLIENT_ID` | *<Enter the App Client ID obtained in section 5.5.1>* |
+  | `COGNITO_USER_POOL_ID` | *<Enter the User Pool ID in section 5.5.1>* |
+  | `COGNITO_APP_CLIENT_ID` | *<Enter the App Client ID in section 5.5.1>* |
 
 - **Encryption key:** Keep the default `aws/secretsmanager` (AWS will automatically use the KMS service to encrypt this vault).
 - Click **Next**.
+
+![AWS Secrets Manager Step 1](/images/5-Workshop/5.5-Security-setup/5.5.2-secrets-manager/aws_secrets_manager_step_1.png)
 
 **Step 2: Configure secret**
 - **Secret name:** Enter the name following a hierarchical directory structure for easy management: `cloudforge/backend/config`
 - **Description:** Enter a brief description (e.g., `Contains sensitive configuration for the Smart Media Analytics Backend application`).
 - Leave other fields at their defaults and click **Next**.
 
+![AWS Secrets Manager Step 2](/images/5-Workshop/5.5-Security-setup/5.5.2-secrets-manager/aws_secrets_manager_step_2.png)
+
 **Step 3: Configure rotation**
-- **Automatic rotation:** Select **Disable automatic rotation** (Turn off the automatic periodic password change feature for a simple Lab environment).
+- **Automatic rotation:** Select **Disable automatic rotation** (Turn off the automatic periodic password change feature).
 - Click **Next**.
+
+![AWS Secrets Manager Step 3](/images/5-Workshop/5.5-Security-setup/5.5.2-secrets-manager/aws_secrets_manager_step_3.png)
 
 **Step 4: Review**
 - Scroll to the bottom to review the configuration structure and click the **Store** button to complete the initialization.
@@ -54,4 +60,4 @@ Here, you need to note down the following extremely important parameter:
 
 ***
 
-**Next Step:** The secure configuration vault has been fully set up. We will proceed to the outermost defensive layer in **5.5.3: Configure WAF Rules to protect API** to establish a firewall that blocks destructive network attacks from the Internet!
+**Next Step:** The secure configuration vault has been fully set up. We will proceed to the outermost defensive layer in [**5.5.3: Configure WAF Rules to protect API**](../5.5.3-waf-rules/) to establish a firewall that blocks destructive network attacks from the Internet!

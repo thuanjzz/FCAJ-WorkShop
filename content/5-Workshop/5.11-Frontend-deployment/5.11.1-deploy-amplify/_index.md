@@ -47,5 +47,3 @@ When all 4 steps transition to green (Success), AWS Amplify provisions a default
 ***
 
 **Next Step:** The Frontend source code has been successfully compiled and distributed. The project team will proceed to attach a Custom Domain to the application via the Amazon Route 53 service in lesson 5.11.2.
-
-

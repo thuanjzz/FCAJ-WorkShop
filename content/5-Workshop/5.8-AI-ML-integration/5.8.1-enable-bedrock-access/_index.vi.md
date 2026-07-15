@@ -18,7 +18,7 @@ Trong dự án này, chúng ta sử dụng dòng mô hình **Anthropic Claude 3*
 
 {{% notice info %}}
 **Lưu ý quan trọng:** Bắt đầu từ chương 5.8 này, toàn bộ quá trình giao tiếp với các dịch vụ AI (Amazon Bedrock, Amazon Transcribe) đều được xử lý hoàn toàn tự động bởi mã nguồn Python bên trong Container `ai_worker` mà bạn đã triển khai ở chương trước. 
-**Bạn KHÔNG CẦN thao tác tay bất kỳ bước nào trên AWS Console trong toàn bộ Chương 5.8 này.** Hãy đọc lướt qua để hiểu cơ chế luồng dữ liệu (Data flow) hoạt động ra sao!
+**Bạn không cần thao tác tay bất kỳ bước nào trên AWS Console trong toàn bộ Chương 5.8 này.** Hãy đọc lướt qua để hiểu cơ chế luồng dữ liệu (Data flow) hoạt động ra sao!
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -27,4 +27,4 @@ Trong dự án này, chúng ta sử dụng dòng mô hình **Anthropic Claude 3*
 
 ***
 
-**Bước tiếp theo:** Với việc Amazon Bedrock đã sẵn sàng ở trạng thái tự động kích hoạt, chúng ta sẽ tiếp tục thiết lập dịch vụ **Amazon Transcribe** để xử lý luồng dữ liệu âm thanh ở phần tiếp theo.
+**Bước tiếp theo:** Với việc Amazon Bedrock đã sẵn sàng ở trạng thái tự động kích hoạt, tiến hành tiếp tục thiết lập dịch vụ [**Amazon Transcribe**](../5.8.2-setup-transcribe/) để xử lý luồng dữ liệu âm thanh ở phần tiếp theo.

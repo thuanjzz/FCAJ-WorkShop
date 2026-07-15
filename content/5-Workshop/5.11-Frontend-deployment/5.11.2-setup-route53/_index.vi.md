@@ -44,5 +44,3 @@ Khi trạng thái chuyển thành **Available**, ứng dụng Frontend đã chí
 ***
 
 **Bước tiếp theo:** Hệ thống Backend và Frontend đã được định danh và bảo mật bằng SSL. Trong bước cuối cùng ở bài 5.11.3, nhóm dự án sẽ thiết lập cấu hình biến môi trường trên Frontend để kết nối trực tiếp với API Gateway và hệ thống xác thực Amazon Cognito.
-
-

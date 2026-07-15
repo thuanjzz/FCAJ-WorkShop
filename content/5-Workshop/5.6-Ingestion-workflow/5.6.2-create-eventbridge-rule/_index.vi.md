@@ -8,20 +8,37 @@ pre : " <b> 5.6.2. </b> "
 
 Sau khi hàng đợi SQS đã sẵn sàng tiếp nhận công việc, bước tiếp theo trong kiến trúc hướng sự kiện (Event-driven) là thiết lập bộ định tuyến trung tâm: **Amazon EventBridge**.
 
-Trong hệ thống Smart Media Analytics, khi một tệp đa phương tiện (Video/Audio) được tải lên Amazon S3, S3 sẽ phát ra một sự kiện. EventBridge đóng vai trò "lắng nghe" và ngay lập tức định tuyến thông điệp chứa siêu dữ liệu của tệp tin đó vào hàng đợi SQS `cloudforge-media-task-queue` để các AI Worker lấy ra xử lý.
+Trong hệ thống Smart Media Analytics, khi một tệp đa phương tiện (Video/Audio) được tải lên Amazon S3, S3 sẽ phát ra một sự kiện. EventBridge đóng vai trò bộ định tuyến trung tâm (Fan-out pattern) đẩy sự kiện tới nhiều đích đến cùng lúc: hàng đợi SQS `cloudforge-media-task-queue` (để lưu vết/buffer) và AWS Step Functions (để kích hoạt tiến trình AI Worker).
 
 #### 1. Khởi tạo EventBridge Rule (Enhanced Builder)
 Truy cập dịch vụ **Amazon EventBridge** → **Rules** → **Create rule**. Sử dụng giao diện thiết lập trực quan (Enhanced builder) để cấu hình luồng định tuyến:
 
 **Bước 1: Thiết lập Trigger (Nguồn phát sự kiện)**
 - Tại thẻ **Build**, khu vực *Events* bên trái, tìm và kéo khối **S3 (Simple Storage Service) Object Created** thả vào khu vực **Triggering Events**.
-- *Tùy chọn nâng cao (Lọc sự kiện):* Thông qua tính năng **Event pattern (Filter)**, kiến trúc có thể được cấu hình để chỉ định bắt sự kiện từ một S3 Bucket cụ thể, giúp tối ưu hóa lưu lượng và ngăn chặn các vòng lặp xử lý không mong muốn.
+- **CỰC KỲ QUAN TRỌNG (Ngăn chặn Infinite Loop):** Bạn bắt buộc phải cuộn xuống mục **Event pattern** (nằm bên phải), chọn tab **JSON** và dán đoạn mã sau vào (nhớ thay `<YOUR_BUCKET_NAME>` thành tên bucket của hệ thống). Việc thêm `{"prefix": "uploads/"}` đảm bảo hệ thống chỉ kích hoạt AI Worker khi người dùng upload video gốc, và **bỏ qua** các file ảnh Thumbnail do chính AI Worker sinh ra sau này:
+  ```json
+  {
+    "source": ["aws.s3"],
+    "detail-type": ["Object Created"],
+    "detail": {
+      "bucket": {
+        "name": ["<YOUR_BUCKET_NAME>"]
+      },
+      "object": {
+        "key": [{
+          "prefix": "uploads/"
+        }]
+      }
+    }
+  }
+  ```
 
-![EventBridge Trigger Setup](/images/5-Workshop/5.6-Ingestion-workflow/5.6.2-create-eventbridge-rule/eventbridge_trigger.png)
+  ![EventBridge Event Pattern](/images/5-Workshop/5.6-Ingestion-workflow/5.6.2-create-eventbridge-rule/eventbridge_event_pattern.png)
 
 **Bước 2: Thiết lập Target (Đích đến)**
 - Tại thanh công cụ bên trái, tìm kiếm dịch vụ **SQS** (hoặc mở danh mục AWS Services), kéo khối **Amazon SQS** thả vào khu vực **Targets**.
 - Tại bảng cấu hình Target, mục *Queue*, chọn đúng hàng đợi **`cloudforge-media-task-queue`** đã khởi tạo ở phân đoạn trước.
+- *(Lưu ý: Tiến hành thêm Target thứ 2 là AWS Step Functions ở bài tiếp theo sau khi khởi tạo xong).*
 
 ![EventBridge Target Setup](/images/5-Workshop/5.6-Ingestion-workflow/5.6.2-create-eventbridge-rule/eventbridge_target.png)
 
@@ -45,4 +62,4 @@ Khi quy tắc được tạo thành công và kích hoạt, đường ống dữ
 
 ***
 
-**Bước tiếp theo:** Dòng chảy dữ liệu từ khi người dùng Upload (S3) → Nhận diện sự kiện (EventBridge) → Chờ xử lý (SQS) đã được khơi thông. Tiếp theo, chúng ta sẽ làm quen với một khái niệm nâng cao trong kiến trúc điều phối tại bài **5.6.3: Khởi tạo Step Functions (Tùy chọn)**.
+**Bước tiếp theo:** Dòng chảy dữ liệu từ khi người dùng Upload (S3) → Nhận diện sự kiện (EventBridge) → Chờ xử lý (SQS) đã được khơi thông. Tiếp theo, tiến hành làm quen với một khái niệm nâng cao trong kiến trúc điều phối tại bài [**5.6.3: Khởi tạo Step Functions (Tùy chọn)**](../5.6.3-create-step-functions/).

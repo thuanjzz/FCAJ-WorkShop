@@ -47,5 +47,3 @@ Khi cả 4 bước chuyển sang màu xanh (Success), AWS Amplify sẽ cung cấ
 ***
 
 **Bước tiếp theo:** Mã nguồn Frontend đã được biên dịch và phân phối thành công. Nhóm dự án sẽ tiến hành gắn tên miền tùy chỉnh cho ứng dụng thông qua dịch vụ Amazon Route 53 ở bài 5.11.2.
-
-

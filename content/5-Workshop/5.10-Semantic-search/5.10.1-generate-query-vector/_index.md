@@ -1,4 +1,4 @@
-﻿---
+---
 title : "Generate Query Vector"
 date : 2026-07-10
 weight : 1
@@ -16,7 +16,7 @@ When a user submits a search phrase on the Frontend, the data processing flow is
 3. The ALB distributes the request to an API Pod (running on ECS Fargate) designated for handling search tasks (Search Service).
 4. The API Pod receives the search string and initiates a call to the Amazon Bedrock service.
 
-![Semantic Search Flow](/images/5-Workshop/5.10-Semantic-search/5.10.1-generate-query-vector/5.10.1-query-flow.png)
+![Query Flow](/images/5-Workshop/5.10-Semantic-search/5.10.1-generate-query-vector/5.10.1-query-flow.png)
 
 #### Amazon Bedrock Interaction Setup
 The project team configures the API Pod using the AWS SDK (`boto3`) to interact with Amazon Bedrock. Consistent with the Ingestion phase, the designated model is **Amazon Titan Text Embeddings v2** (`amazon.titan-embed-text-v2:0`).
@@ -67,5 +67,3 @@ During this phase, the ECS Task Role of the Search Service (Backend API) is prov
 ***
 
 **Next Step:** Once the API Pod receives the Vector array returned from Amazon Bedrock, this mathematical sequence will be utilized as the Input Parameter for the PostgreSQL database query in lesson 5.10.2.
-
-

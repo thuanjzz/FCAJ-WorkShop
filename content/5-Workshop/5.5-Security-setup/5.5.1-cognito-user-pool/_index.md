@@ -10,7 +10,7 @@ In the architecture of Smart Media Analytics, we will not build an account manag
 
 The Backend (or Frontend) system will communicate with Cognito to handle sign-up, sign-in, and receive standard JWT (JSON Web Token) tokens to authenticate API requests.
 
-#### 1. Initialize Cognito User Pool (New UI)
+#### 1. Initialize Cognito User Pool
 Navigate to the **Amazon Cognito Console**, ensuring you are in the correct Region `ap-southeast-1` (Singapore), and follow the quick setup interface (**Set up resources for your application**):
 
 **Step 1: Define your application**
@@ -37,4 +37,4 @@ Once successfully created, the system will take you to the management page of th
 
 ***
 
-**Next Step:** The user identity system is complete. We will proceed to section **5.5.2: Manage configuration with Secrets Manager** to set up an ultra-secure vault, definitively solving the problem of hiding the `DB_PASSWORD`!
+**Next Step:** The user identity system is complete. We will proceed to section [**5.5.2: Manage configuration with Secrets Manager**](../5.5.2-secrets-manager/) to set up an ultra-secure vault, definitively solving the problem of hiding the `DB_PASSWORD`!
